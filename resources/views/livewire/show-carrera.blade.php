@@ -1,8 +1,10 @@
 <div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <!-- component -->
+
 
         <x-table>
+
+            {{-- ------------------- Buscador de la tabla ------------------------------------------------------- --}}
             <div class="px-6 py-4 flex">
                 <!-- input de jetstream utilizado para el buscador -->
                 <x-input class="flex-1 mr-4" placeholder="Buscar carrera" type="text" wire:model="search" />
@@ -10,6 +12,8 @@
                 @livewire('create-carrera')
 
             </div>
+            {{-- ------------------- Buscador de la tabla ------------------------------------------------------- --}}
+
 
             @if ($carreras->count())
                 <table class="min-w-full divide-y divide-gray-200">
@@ -90,12 +94,14 @@
     </div>
 
 
+
+
     {{-- ------------------------  DIALOG MODAL visualizado al precionar el boton editar --------------------------- --}}
 
     <x-dialog-modal wire:model="open_edit">
 
         <x-slot name="title">
-            Editando la Carrera: {{ $item->nombre }}
+            Editando la Carrera: {{ $nombre }}
         </x-slot>
 
 
@@ -104,11 +110,11 @@
             que cambie la propiedad relacionada, sino que lo haga solo cuando se desencadene alguna accion  --}}
             <div class="mb-4">
                 <x-label value="Nombre de la Carrera" />
-               {{-- // <x-input wire:model="carrera.nombre" type="text" class="w-full" /> --}}
+                <x-input wire:model="nombre" type="text" class="w-full" />
             </div>
             <div class="mb-4">
                 <x-label value="Codigo" />
-                <x-input wire:model="carrera.codigo" type="text" class="w-full" />
+                <x-input wire:model="codigo" type="text" class="w-full" />
             </div>
         </x-slot>
 
@@ -124,5 +130,7 @@
         </x-slot>
 
     </x-dialog-modal>
+
+    {{-- ------------------------  DIALOG MODAL visualizado al precionar el boton editar --------------------------- --}}
 
 </div>

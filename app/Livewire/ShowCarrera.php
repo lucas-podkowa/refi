@@ -8,10 +8,14 @@ use Livewire\Attributes\On;
 
 class ShowCarrera extends Component
 {
-    public $search, $carrera;
+    public $search, $carrera, $nombre, $codigo;
     public $sort = 'nombre';
     public $direction = 'asc';
     public $open_edit = false;
+
+    public function mount(Carrera $carrera){
+        $this->fill($carrera->only(['nombre', 'codigo']));
+    }
 
     protected $rules = [
         'carrera.nombre' => 'required|max:100',
@@ -37,7 +41,7 @@ class ShowCarrera extends Component
 
     public function edit(Carrera $carrera)
     {
-        $this->carrera = $carrera;
+        $this->fill($carrera->only(['nombre', 'codigo']));
         $this->open_edit = true;
     }
 
