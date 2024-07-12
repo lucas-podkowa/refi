@@ -17,8 +17,12 @@ return new class extends Migration
             $table->string('codigo', 8);
             $table->unsignedTinyInteger('ciclo');
             $table->string('responsable', 50)->nullable();
-            $table->foreignId('dictado')->constrained('dictado')->onDelete('cascade');
-            $table->foreignId('carrera')->constrained('carrera')->onDelete('cascade');
+            $table->unsignedBigInteger('dictado_id');
+            $table->unsignedBigInteger('carrera_id');
+            $table->foreign('dictado_id')->references('id')->on('dictado')->onDelete('cascade');
+            $table->foreign('carrera_id')->references('id')->on('carrera')->onDelete('cascade');
+            // $table->foreignId('dictado')->constrained('dictado')->onDelete('cascade');
+            // $table->foreignId('carrera')->constrained('carrera')->onDelete('cascade');
         });
     }
 

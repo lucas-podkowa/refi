@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Dictado extends Model
 {
     use HasFactory;
+
+    protected $table = 'dictado';
+
+    protected $fillable = ['nombre'];
+
+    public function asignaturas()
+    {
+        return $this->hasMany(Asignatura::class, 'id');
+    }
 }

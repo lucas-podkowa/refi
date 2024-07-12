@@ -9,23 +9,25 @@
                 <!-- input de jetstream utilizado para el buscador -->
                 <x-input class="flex-1 mr-4" placeholder="Buscar carrera" type="text" wire:model="search" />
 
+                {{-- este es un componente hijo, tiene un boton y el formulario para crear una carrera --}}
                 @livewire('create-carrera')
 
             </div>
             {{-- ------------------- Buscador de la tabla ------------------------------------------------------- --}}
 
 
+
+            {{-- $carreras es esta en el metodo render de la clase y es enviada aqui como un parametro --}}
             @if ($carreras->count())
                 <table class="min-w-full divide-y divide-gray-200">
-                    <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
                     <thead class="bg-gray-50">
                         <tr>
                             <th scope="col"
                                 class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500"
-                                wire:click="order('nombre')">
+                                {{-- aqui disparo "public function order($sort)" que esta en la clase --}} wire:click="order('nombre')">
                                 Nombre
 
-                                {{-- $sort --}}
+                                {{-- $sort es una propiedad de la clase --}}
                                 @if ($sort == 'nombre')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
@@ -39,7 +41,7 @@
                             </th>
                             <th scope="col"
                                 class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500"
-                                wire:click="order('codigo')">
+                                {{-- aqui disparo "public function order($sort)" que esta en la clase --}} wire:click="order('codigo')">
                                 Codigo
 
                                 {{-- $sort --}}
@@ -73,8 +75,9 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-3 whitespace-nowrap text-sm font-medium">
-
-                                    <a class="btn btn-blue-green" wire:click="edit({{ $item }})">
+                                    
+                                    {{-- aqui esta el boton editar que dispara el metodo edit y este muestra el modal --}}
+                                    <a class="btn btn-blue-green" wire:click="edit({{ $item->id }})">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
@@ -98,38 +101,46 @@
 
     {{-- ------------------------  DIALOG MODAL visualizado al precionar el boton editar --------------------------- --}}
 
-    <x-dialog-modal wire:model="open_edit">
+    <form wire:submit="update">
+        <x-dialog-modal wire:model="open_edit">
 
-        <x-slot name="title">
-            Editando la Carrera: {{ $nombre }}
-        </x-slot>
+            <x-slot name="title">
+                {{-- Editando la Carrera: {{ $carreraEdit->nombre }} --}}
+            </x-slot>
 
 
-        <x-slot name="content">
-            {{-- wire:model.defer le decimos a livewire que NO vuelva a renderizar el componente cada vez 
+            <x-slot name="content">
+
+
+                {{-- wire:model.defer le decimos a livewire que NO vuelva a renderizar el componente cada vez 
             que cambie la propiedad relacionada, sino que lo haga solo cuando se desencadene alguna accion  --}}
-            <div class="mb-4">
-                <x-label value="Nombre de la Carrera" />
-                <x-input wire:model="nombre" type="text" class="w-full" />
-            </div>
-            <div class="mb-4">
-                <x-label value="Codigo" />
-                <x-input wire:model="codigo" type="text" class="w-full" />
-            </div>
-        </x-slot>
+                <div class="mb-4">
+                    <x-label value="Nombre de la Carrera" />
+                    <x-input wire:model="carreraEdit.nombre" required type="text" class="w-full" />
+                    <x-input-error for='carreraEdit.nombre' />
+                </div>
+                <div class="mb-4">
+                    <x-label value="Codigo" />
+                    <x-input wire:model="carreraEdit.codigo" required type="text" class="w-full" />
+                    <x-input-error for='carreraEdit.codigo' />
+                </div>
+
+            </x-slot>
 
 
-        <x-slot name="footer">
-            <x-secondary-button wire:click="$set('open_edit', false)">
-                Cancelar
-            </x-secondary-button>
+            <x-slot name="footer">
+                <x-secondary-button class="mr-2" wire:click="$set('open_edit', false)">
+                    Cancelar
+                </x-secondary-button>
 
-            <x-danger-button wire:click="update" wire:loading.attr="disabled" class="disabled:opacity-25">
-                Actualizar
-            </x-danger-button>
-        </x-slot>
+                <x-button wire:loading.attr="disabled" class="disabled:opacity-25">
+                    Actualizar
+                </x-button>
+            </x-slot>
 
-    </x-dialog-modal>
+        </x-dialog-modal>
+
+    </form>
 
     {{-- ------------------------  DIALOG MODAL visualizado al precionar el boton editar --------------------------- --}}
 

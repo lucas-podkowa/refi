@@ -9,6 +9,12 @@ class CreateCarrera extends Component
 {
     public $open = false; //sirve para que el modal no se visualice al renderizar el componente
     public $nombre, $codigo;
+    public $carreras;
+
+    public function mount()
+    {
+        $this->carreras = Carrera::all();
+    }
 
     protected $rules = [
         'nombre' => 'required|max:100',
@@ -24,10 +30,14 @@ class CreateCarrera extends Component
     {
         $this->validate();
 
-        Carrera::create([
-            'nombre' => $this->nombre,
-            'codigo' => $this->codigo
-        ]);
+        // Carrera::create([
+        //     'nombre' => $this->nombre,
+        //     'codigo' => $this->codigo
+        // ]);
+
+        $carrera = Carrera::create(
+            $this->only('nombre', 'codigo')
+        );
 
         //luego de guardar, se limpian los campos del fomulario
         $this->reset(['open', 'nombre', 'codigo']);

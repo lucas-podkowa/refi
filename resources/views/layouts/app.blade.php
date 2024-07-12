@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     @livewireStyles
+
 </head>
 
 <body class="font-sans antialiased">
@@ -45,6 +46,7 @@
     @stack('modals')
 
     @livewireScripts
+
     <script>
         document.addEventListener('livewire:init', () => {
             Livewire.on('alert', (event) => {
@@ -56,6 +58,16 @@
                     timer: 2500
                 });
             });
+            Livewire.on('oops', (event) => {
+                Swal.fire({
+                    icon: "error",
+                    title: event.message,
+                    // text: "Something went wrong!",
+                    // footer: '<a href="#">Why do I have this issue?</a>'
+                });
+            });
+
+
         });
     </script>
 </body>

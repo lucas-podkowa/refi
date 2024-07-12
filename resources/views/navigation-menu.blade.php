@@ -19,7 +19,17 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('carreras') }}" :active="request()->routeIs('carreras')">
-                        {{ __('ShowCarrera') }}
+                        {{ __('Carreras') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('asignaturas') }}" :active="request()->routeIs('asignaturas')">
+                        {{ __('Asignaturas') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('eventos') }}" :active="request()->routeIs('eventos')">
+                        {{ __('Eventos') }}
                     </x-nav-link>
                 </div>
             </div>

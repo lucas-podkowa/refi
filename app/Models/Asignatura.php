@@ -9,4 +9,36 @@ class Asignatura extends Model
 {
     use HasFactory;
     protected $table = 'asignatura';
+    protected $fillable = [
+        'nombre',
+        'codigo', 
+        'dictado',
+        'carrera',
+        'ciclo'
+    ];
+
+    public function eventos()
+    {
+        return $this->hasMany(Evento::class);
+    }
+    
+    public function carrera()
+    {
+        return $this->belongsTo(Carrera::class);
+    }
+
+    public function dictado()
+    {
+        return $this->belongsTo(Dictado::class, 'dictado_id', 'id');
+    }
+
+    public function equivalencias()
+    {
+        return $this->belongsToMany(Asignatura::class, 'equivalencia', 'asignatura_1', 'asignatura_2');
+    }
+
+    public function equivalenciasInversas()
+    {
+        return $this->belongsToMany(Asignatura::class, 'equivalencia', 'asignatura_2', 'asignatura_1');
+    }
 }

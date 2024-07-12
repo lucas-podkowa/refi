@@ -5,19 +5,21 @@ use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\ActividadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CalendarioController;
+use App\Livewire\ShowAsignatura;
 use App\Livewire\ShowCarrera;
+use App\Livewire\ShowEvento;
 
 Route::get('/', HomeController::class);
 
 Route::get('carrera', ShowCarrera::class)->name('carreras');
+
+Route::get('evento', ShowEvento::class)->name('eventos');
+
+Route::get('asignatura', ShowAsignatura::class)->name('asignaturas');
+
+
 //Route::get('carrera/{codigo}', ShowCarrera::class);
 
-
-Route::controller(CalendarioController::class)->group(function () {
-    Route::get('calendario', 'index');
-    //Route::get('actividades/create', 'create');
-    //Route::get('actividades/{actividad}', 'show');
-});
 
 // Route::controller(ActividadController::class)->group(function () {
 //     Route::get('actividades', 'index');

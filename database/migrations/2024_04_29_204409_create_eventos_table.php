@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('registro', function (Blueprint $table) {
-            $table->increments('registro_id');
+        Schema::create('evento', function (Blueprint $table) {
+            $table->id();
             $table->date('fecha');
-            $table->time('hora');
             $table->string('observacion');
+            $table->foreignId('turno_id')->constrained('turno');
             $table->foreignId('actividad_id')->constrained('actividad');
             $table->foreignId('asignatura_id')->constrained('asignatura');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('registro');
+        Schema::dropIfExists('evento');
     }
 };

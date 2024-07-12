@@ -14,4 +14,9 @@ class Carrera extends Model
         'nombre',
         'codigo'
     ];
+
+    public function asignaturas()
+    {
+        return $this->hasMany(Asignatura::class);
+    }
 }
