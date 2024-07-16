@@ -190,21 +190,13 @@ class DatabaseSeeder extends Seeder
                 'carrera_id' => 1
             ],//17
             [
-                'nombre' => 'Teoría de la Elasticidad',
-                'codigo' => 'CI254',
-                'ciclo' => 2,
-                'responsable' => null,
-                'dictado_id' => 2,
-                'carrera_id' => 1
-            ],//18
-            [
                 'nombre' => 'Mecánica de los Suelos',
                 'codigo' => 'CI351',
                 'ciclo' => 3,
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 1
-            ],//19
+            ],//18
             [
                 'nombre' => 'Topografía',
                 'codigo' => 'CI352',
@@ -212,7 +204,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 1
-            ],//20
+            ],//19
             [
                 'nombre' => 'Caminos 1',
                 'codigo' => 'CI353',
@@ -220,7 +212,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 1
-            ],//21
+            ],//20
             [
                 'nombre' => 'Estructuras',
                 'codigo' => 'CI354',
@@ -228,7 +220,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 1
-            ],//22
+            ],//21
             [
                 'nombre' => 'Ciencia de los Materiales',
                 'codigo' => 'CI355',
@@ -236,7 +228,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 1
-            ],//24
+            ],//22
             [
                 'nombre' => 'Hidrología',
                 'codigo' => 'CI356',
@@ -244,7 +236,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 1
-            ],//25
+            ],//23
             [
                 'nombre' => 'Inglés 1',
                 'codigo' => 'CI365',
@@ -252,7 +244,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 1
-            ], //26
+            ], //24
             [//1º año ElectroMecanica
                 'nombre' => 'Álgebra y Geometría Analítica',
                 'codigo' => 'EM111',
@@ -260,7 +252,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 2
-            ],//27
+            ],//25
             [
                 'nombre' => 'Cálculo 1',
                 'codigo' => 'EM112',
@@ -268,7 +260,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 2
-            ],//28
+            ],//26
             [
                 'nombre' => 'Física 1',
                 'codigo' => 'EM121',
@@ -276,7 +268,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 2
-            ],//29
+            ],//27
             [
                 'nombre' => 'Química',
                 'codigo' => 'EM122',
@@ -284,7 +276,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 2
-            ],//30
+            ],//28
             [
                 'nombre' => 'Sistemas de Representación Gráfica',
                 'codigo' => 'EM131',
@@ -292,7 +284,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 2
-            ],//31
+            ],//29
             [
                 'nombre' => 'Ingeniería y Sociedad',
                 'codigo' => 'EM161',
@@ -300,7 +292,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 2
-            ],//32
+            ],//30
             [//2º año ElectroMecanica
                 'nombre' => 'Cálculo 2',
                 'codigo' => 'EM211',
@@ -308,7 +300,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 2
-            ],//33
+            ],//31
             [
                 'nombre' => 'Probabilidad y Estadística 1',
                 'codigo' => 'EM213',
@@ -316,7 +308,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 2
-            ],//34
+            ],//32
             [
                 'nombre' => 'Física 2',
                 'codigo' => 'EM221',
@@ -324,7 +316,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 2
-            ],//35
+            ],//33
             [
                 'nombre' => 'Informática',
                 'codigo' => 'EM241',
@@ -332,7 +324,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 2
-            ],//36
+            ],//34
             [
                 'nombre' => 'Matemática Aplicada',
                 'codigo' => 'EM212',
@@ -340,7 +332,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 2
-            ],//37
+            ],//35
             [
                 'nombre' => 'Mecánica Racional',
                 'codigo' => 'EM222',
@@ -348,7 +340,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 2
-            ],//38
+            ],//36
             [
                 'nombre' => 'Termodinámica',
                 'codigo' => 'EM231',
@@ -356,7 +348,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 2
-            ],//39
+            ],//37
             [
                 'nombre' => 'Estática y Resistencia de Materiales',
                 'codigo' => 'EM253',
@@ -364,7 +356,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 2
-            ],//40
+            ],//38
             [
                 'nombre' => 'Ingeniería e Industrias',
                 'codigo' => 'EM261',
@@ -372,7 +364,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 2
-            ],//41
+            ],//39
             [
                 'nombre' => 'Electrotécnia',
                 'codigo' => 'EM331',
@@ -380,7 +372,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 2
-            ],//42
+            ],//40
             [
                 'nombre' => 'Mecánica de los Fluidos y Máquinas',
                 'codigo' => 'EM332',
@@ -388,7 +380,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 2
-            ],//43
+            ],//41
             [
                 'nombre' => 'Diseño Aplicado',
                 'codigo' => 'EM333',
@@ -396,7 +388,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 2
-            ],//44
+            ],//42
             [
                 'nombre' => 'Máquinas e Instalaciones Térmicas 1',
                 'codigo' => 'EM334',
@@ -404,7 +396,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 2
-            ],//45
+            ],//43
             [
                 'nombre' => 'Electrónica',
                 'codigo' => 'EM341',
@@ -412,7 +404,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 2
-            ],//46
+            ],//44
             [
                 'nombre' => 'Ciencia de los Materiales',
                 'codigo' => 'EM335',
@@ -420,7 +412,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 2
-            ],//47
+            ],//45
             [
                 'nombre' => 'Mediciones y Metrología',
                 'codigo' => 'EM336',
@@ -428,7 +420,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 2
-            ],//48
+            ],//46
             [
                 'nombre' => 'Máquinas Eléctricas',
                 'codigo' => 'EM337',
@@ -436,7 +428,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 2
-            ],//49
+            ],//47
             [
                 'nombre' => 'Higiene, Seguridad y Medio Ambiente',
                 'codigo' => 'EM466',
@@ -444,7 +436,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 2
-            ],//50
+            ],//48
             [//1º año Ingeniería Electronica
                 'nombre' => 'Álgebra y Geometría Analítica',
                 'codigo' => 'ET111',
@@ -452,7 +444,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 3
-            ],//51
+            ],//49
             [
                 'nombre' => 'Cálculo 1',
                 'codigo' => 'ET112',
@@ -460,7 +452,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 3
-            ],//52
+            ],//50
             [
                 'nombre' => 'Física 1',
                 'codigo' => 'ET121',
@@ -468,7 +460,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 3
-            ],//53
+            ],//51
             [
                 'nombre' => 'Química',
                 'codigo' => 'ET122',
@@ -476,7 +468,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 3
-            ],//54
+            ],//52
             [
                 'nombre' => 'Sistemas de Representación Gráfica',
                 'codigo' => 'ET131',
@@ -484,7 +476,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 3
-            ],//55
+            ],//53
             [
                 'nombre' => 'Ingeniería y Sociedad',
                 'codigo' => 'ET161',
@@ -492,7 +484,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 3
-            ],//56
+            ],//54
             [
                 'nombre' => 'Cálculo 2',
                 'codigo' => 'ET211',
@@ -500,7 +492,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 3
-            ],//57
+            ],//55
             [
                 'nombre' => 'Probabilidad y Estadística 1',
                 'codigo' => 'ET213',
@@ -508,7 +500,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 3
-            ],//58
+            ],//56
             [
                 'nombre' => 'Física 2',
                 'codigo' => 'ET221',
@@ -516,7 +508,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 3
-            ],//59
+            ],//57
             [
                 'nombre' => 'Informática',
                 'codigo' => 'ET241',
@@ -524,7 +516,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 3
-            ],//60
+            ],//58
             [
                 'nombre' => 'Matemática Aplicada',
                 'codigo' => 'ET212',
@@ -532,7 +524,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 3
-            ],//61
+            ],//59
             [
                 'nombre' => 'Tecnología Electrónica',
                 'codigo' => 'ET242',
@@ -540,7 +532,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 3
-            ],//62
+            ],//60
             [
                 'nombre' => 'Física 3',
                 'codigo' => 'ET243',
@@ -548,7 +540,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 3
-            ],//63
+            ],//61
             [
                 'nombre' => 'Ingeniería e Industrias',
                 'codigo' => 'ET261',
@@ -556,7 +548,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 3
-            ],//64
+            ],//62
             [//3° año Ingeniería Electrónica
                 'nombre' => 'Análisis de Circuitos',
                 'codigo' => 'ET342',
@@ -564,7 +556,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 3
-            ],//65
+            ],//63
             [
                 'nombre' => 'Señales y Sistemas',
                 'codigo' => 'ET343',
@@ -572,7 +564,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 3
-            ],//66
+            ],//64
             [
                 'nombre' => 'Computación',
                 'codigo' => 'ET344',
@@ -580,7 +572,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 3
-            ],//67
+            ],//65
             [
                 'nombre' => 'Dispositivos Electrónicos',
                 'codigo' => 'ET345',
@@ -588,7 +580,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 3
-            ],//68
+            ],//66
             [
                 'nombre' => 'Máquinas e Instalaciones Eléctricas',
                 'codigo' => 'ET339',
@@ -596,7 +588,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 3
-            ],//69
+            ],//67
             [
                 'nombre' => 'Electromagnetismo',
                 'codigo' => 'ET346',
@@ -604,7 +596,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 3
-            ],//70
+            ],//68
             [
                 'nombre' => 'Electrónica Analógica',
                 'codigo' => 'ET347',
@@ -612,7 +604,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 3
-            ],//71
+            ],//69
             [
                 'nombre' => 'Inglés 1',
                 'codigo' => 'ET365',
@@ -620,7 +612,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 3
-            ],//72
+            ],//70
             [//Ingeniería Industrial
                 'nombre' => 'Álgebra y Geometría Analítica',
                 'codigo' => 'IN111',
@@ -628,7 +620,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 4
-            ],//73
+            ],//71
             [
                 'nombre' => 'Cálculo 1',
                 'codigo' => 'IN112',
@@ -636,7 +628,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 4
-            ],//74
+            ],//72
             [
                 'nombre' => 'Física 1',
                 'codigo' => 'IN121',
@@ -644,7 +636,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 4
-            ],//75
+            ],//73
             [
                 'nombre' => 'Química',
                 'codigo' => 'IN122',
@@ -652,7 +644,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 4
-            ],//76
+            ],//74
             [
                 'nombre' => 'Sistemas de Representación Gráfica',
                 'codigo' => 'IN131',
@@ -660,7 +652,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 4
-            ],//77
+            ],//75
             [
                 'nombre' => 'Ingeniería y Sociedad',
                 'codigo' => 'IN161',
@@ -668,7 +660,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 4
-            ],78
+            ],//76
             [
                 'nombre' => 'Cálculo 2',
                 'codigo' => 'IN211',
@@ -676,7 +668,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 4
-            ],//79
+            ],//77
             [
                 'nombre' => 'Probabilidad y Estadística 1',
                 'codigo' => 'IN213',
@@ -684,7 +676,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 4
-            ],//80
+            ],//78
             [
                 'nombre' => 'Física 2',
                 'codigo' => 'IN221',
@@ -692,7 +684,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 4
-            ],//81
+            ],//79
             [
                 'nombre' => 'Informática',
                 'codigo' => 'IN241',
@@ -700,7 +692,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 4
-            ],//82
+            ],//80
             [
                 'nombre' => 'Matemática Aplicada',
                 'codigo' => 'IN212',
@@ -708,7 +700,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 4
-            ],//83
+            ],//81
             [
                 'nombre' => 'Mecánica Racional',
                 'codigo' => 'IN222',
@@ -716,7 +708,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 4
-            ],//84
+            ],//82
             [
                 'nombre' => 'Termodinámica',
                 'codigo' => 'IN231',
@@ -724,7 +716,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 4
-            ],//85
+            ],//83
             [
                 'nombre' => 'Estática y Resistencia de Materiales',
                 'codigo' => 'IN253',
@@ -732,7 +724,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 4
-            ],//
+            ],//84
             [
                 'nombre' => 'Ingeniería e Industrias',
                 'codigo' => 'IN261',
@@ -740,7 +732,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 4
-            ],//
+            ],//85
             [
                 'nombre' => 'Mecánica de los Fluidos y Máquinas',
                 'codigo' => 'IN332',
@@ -748,7 +740,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 4
-            ],//
+            ],//86
             [
                 'nombre' => 'Electrotécnia y Máquinas Eléctricas',
                 'codigo' => 'IN338',
@@ -756,7 +748,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 4
-            ],//
+            ],//87
             [
                 'nombre' => 'Electrónica',
                 'codigo' => 'IN341',
@@ -764,7 +756,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 4
-            ],//
+            ],//88
             [
                 'nombre' => 'Sistemas de Producción',
                 'codigo' => 'IN363',
@@ -772,7 +764,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 4
-            ],//
+            ],//89
             [
                 'nombre' => 'Probabilidad y Estadística 2',
                 'codigo' => 'IN362',
@@ -780,7 +772,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 4
-            ],//
+            ],//90
             [
                 'nombre' => 'Ciencia de los Materiales',
                 'codigo' => 'IN335',
@@ -788,7 +780,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 4
-            ],//
+            ],//91
             [
                 'nombre' => 'Ingeniería Económica',
                 'codigo' => 'IN361',
@@ -796,15 +788,31 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 4
-            ],//
+            ],//92
             [
+                'nombre' => 'Costos Industriales',
+                'codigo' => 'IN364',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 4
+            ],//93
+            [
+                'nombre' => 'Inglés 1',
+                'codigo' => 'IN365',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 4
+            ],//94                      
+            [//--------Ingeniería en Computación
                 'nombre' => 'Matemática 1',
                 'codigo' => 'IC101',
                 'ciclo' => 1,
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 5
-            ],//
+            ],//95
             [
                 'nombre' => 'Álgebra',
                 'codigo' => 'IC102',
@@ -812,7 +820,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 5
-            ],//
+            ],//96
             [
                 'nombre' => 'Algoritmos y Estructuras de Datos',
                 'codigo' => 'IC103',
@@ -820,7 +828,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 1,
                 'carrera_id' => 5
-            ],//
+            ],//97
             [
                 'nombre' => 'Fundamentos de Informática',
                 'codigo' => 'IC111',
@@ -828,7 +836,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 5
-            ],//
+            ],//98
             [
                 'nombre' => 'Inglés Técnico 1',
                 'codigo' => 'IC112',
@@ -836,7 +844,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 5
-            ],//
+            ],//99
             [
                 'nombre' => 'Sistemas de Representación',
                 'codigo' => 'IC121',
@@ -844,7 +852,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 5
-            ],//
+            ],//100
             [
                 'nombre' => 'Química',
                 'codigo' => 'IC122',
@@ -852,7 +860,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 5
-            ],//
+            ],//101
             [
                 'nombre' => 'Matemática 2',
                 'codigo' => 'IC211',
@@ -860,7 +868,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 5
-            ],//
+            ],//102
             [
                 'nombre' => 'Física Mecánica',
                 'codigo' => 'IC212',
@@ -868,7 +876,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 5
-            ],//
+            ],//103
             [
                 'nombre' => 'Fundamentos de Computación 1',
                 'codigo' => 'IC213',
@@ -876,7 +884,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 5
-            ],//
+            ],//104
             [
                 'nombre' => 'Arquitectura de Computadoras',
                 'codigo' => 'IC221',
@@ -884,7 +892,7 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 5
-            ],//
+            ],//105
             [
                 'nombre' => 'Matemática 3',
                 'codigo' => 'IC222',
@@ -892,62 +900,286 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 3,
                 'carrera_id' => 5
-            ],//
+            ],//106
             [
-                'nombre' => '',
-                'codigo' => 'IC',
+                'nombre' => 'Electricidad y Electromagnetismo',
+                'codigo' => 'IC223',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 5
+            ],//107
+            [
+                'nombre' => 'Programación',
+                'codigo' => 'IC224',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 5
+            ],//108
+            [
+                'nombre' => 'Probabilidad y Estadística',
+                'codigo' => 'IC311',
                 'ciclo' => 3,
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 5
-            ],//
+            ],//109
             [
-                'nombre' => '',
-                'codigo' => 'IC',
+                'nombre' => 'Circuitos Eléctricos',
+                'codigo' => 'IC312',
                 'ciclo' => 3,
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 5
-            ],//
+            ],//110
             [
-                'nombre' => '',
-                'codigo' => 'IC',
+                'nombre' => 'Materiales y Dispositivos Electrónicos',
+                'codigo' => 'IC313',
                 'ciclo' => 3,
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 5
-            ],//
+            ],//111
             [
-                'nombre' => '',
-                'codigo' => 'IC',
+                'nombre' => 'Organización Empresarial',
+                'codigo' => 'IC314',
                 'ciclo' => 3,
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 5
-            ],//
+            ],//112
             [
-                'nombre' => '',
-                'codigo' => 'IC',
+                'nombre' => 'Sistemas Operativos',
+                'codigo' => 'IC315',
                 'ciclo' => 3,
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 5
-            ],//
+            ],//113
             [
-                'nombre' => '',
-                'codigo' => 'IC',
+                'nombre' => 'Electrónica Analógica',
+                'codigo' => 'IC321',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 5
+            ],//114
+            [
+                'nombre' => 'Fundamentos de Computación 2',
+                'codigo' => 'IC322',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 5
+            ],//115
+            [
+                'nombre' => 'Comunicación de Datos',
+                'codigo' => 'IC323',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 5
+            ],//116
+            [
+                'nombre' => 'Señales y Sistemas',
+                'codigo' => 'IC324',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 5
+            ],//117
+            [//------Ingeniería Mecatrónica
+                'nombre' => 'Álgebra y Geometría Analítica',
+                'codigo' => 'IM101',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 6
+            ],//118
+            [
+                'nombre' => 'Cálculo 1',
+                'codigo' => 'IM102',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 6
+            ],//119
+            [
+                'nombre' => 'Física 1',
+                'codigo' => 'IM103',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 6
+            ],//120
+            [
+                'nombre' => 'Ingeniería y Sociedad',
+                'codigo' => 'IM104',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 6
+            ],//121
+            [
+                'nombre' => 'Sistemas de Representación Gráfica',
+                'codigo' => 'IM105',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 6
+            ],//122
+            [
+                'nombre' => 'Química',
+                'codigo' => 'IM106',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 6
+            ],//123
+            [
+                'nombre' => 'Cálculo 2',
+                'codigo' => 'IM201',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 6
+            ],//124
+            [
+                'nombre' => 'Estadística Técnica',
+                'codigo' => 'IM202',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 6
+            ],//125
+            [
+                'nombre' => 'Física 2',
+                'codigo' => 'IM203',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 6
+            ],//126
+            [
+                'nombre' => 'Informática',
+                'codigo' => 'IM204',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 6
+            ],//127
+            [
+                'nombre' => 'Introducción a la Tecnología Mecatrónica',
+                'codigo' => 'IM205',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 6
+            ],//128
+            [
+                'nombre' => 'Matemática Aplicada',
+                'codigo' => 'IM206',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 6
+            ],//129
+            [
+                'nombre' => 'Termodinámica',
+                'codigo' => 'IM207',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 6
+            ],//130
+            [
+                'nombre' => 'Estática y Resistencia de Materiales',
+                'codigo' => 'IM208',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 6
+            ],//131
+            [
+                'nombre' => 'Electrotecnia',
+                'codigo' => 'IM301',
                 'ciclo' => 3,
                 'responsable' => null,
                 'dictado_id' => 2,
-                'carrera_id' => 5
-            ],//
+                'carrera_id' => 6
+            ],//132
             [
-                'nombre' => '',
-                'codigo' => 'IC',
+                'nombre' => 'Mecánica de Fluidos y Máquinas',
+                'codigo' => 'IM302',
                 'ciclo' => 3,
                 'responsable' => null,
                 'dictado_id' => 2,
-                'carrera_id' => 5
+                'carrera_id' => 6
+            ],//133
+            [
+                'nombre' => 'Diseño Aplicado',
+                'codigo' => 'IM303',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 6
+            ],//134
+            [
+                'nombre' => 'Tecnología y Selección de Materiales',
+                'codigo' => 'IM304',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 6
+            ],//135
+            [
+                'nombre' => 'Actuadores Electromagnéticos',
+                'codigo' => 'IM305',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 6
+            ],//136
+            [
+                'nombre' => 'Sistemas Digitales',
+                'codigo' => 'IM306',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 6
+            ],//137
+            [
+                'nombre' => 'Electrónica Analógica',
+                'codigo' => 'IM307',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 6
+            ],//138
+            [
+                'nombre' => 'Ingeniería e Industrias',
+                'codigo' => 'IM308',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 6
+            ],//139
+            [
+                'nombre' => 'Mecánica Racional',
+                'codigo' => 'IM309',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 6
+            ],//140
+            [
+                'nombre' => '',
+                'codigo' => 'IM',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => ,
+                'carrera_id' => 6
             ]
         ]);
 
