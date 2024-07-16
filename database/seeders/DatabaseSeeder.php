@@ -524,8 +524,431 @@ class DatabaseSeeder extends Seeder
                 'responsable' => null,
                 'dictado_id' => 2,
                 'carrera_id' => 3
-            ]//60
-
+            ],//60
+            [
+                'nombre' => 'Matemática Aplicada',
+                'codigo' => 'ET212',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 3
+            ],//61
+            [
+                'nombre' => 'Tecnología Electrónica',
+                'codigo' => 'ET242',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 3
+            ],//62
+            [
+                'nombre' => 'Física 3',
+                'codigo' => 'ET243',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 3
+            ],//63
+            [
+                'nombre' => 'Ingeniería e Industrias',
+                'codigo' => 'ET261',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 3
+            ],//64
+            [//3° año Ingeniería Electrónica
+                'nombre' => 'Análisis de Circuitos',
+                'codigo' => 'ET342',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 3
+            ],//65
+            [
+                'nombre' => 'Señales y Sistemas',
+                'codigo' => 'ET343',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 3
+            ],//66
+            [
+                'nombre' => 'Computación',
+                'codigo' => 'ET344',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 3
+            ],//67
+            [
+                'nombre' => 'Dispositivos Electrónicos',
+                'codigo' => 'ET345',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 3
+            ],//68
+            [
+                'nombre' => 'Máquinas e Instalaciones Eléctricas',
+                'codigo' => 'ET339',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 3
+            ],//69
+            [
+                'nombre' => 'Electromagnetismo',
+                'codigo' => 'ET346',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 3
+            ],//70
+            [
+                'nombre' => 'Electrónica Analógica',
+                'codigo' => 'ET347',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 3
+            ],//71
+            [
+                'nombre' => 'Inglés 1',
+                'codigo' => 'ET365',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 3
+            ],//72
+            [//Ingeniería Industrial
+                'nombre' => 'Álgebra y Geometría Analítica',
+                'codigo' => 'IN111',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 4
+            ],//73
+            [
+                'nombre' => 'Cálculo 1',
+                'codigo' => 'IN112',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 4
+            ],//74
+            [
+                'nombre' => 'Física 1',
+                'codigo' => 'IN121',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 4
+            ],//75
+            [
+                'nombre' => 'Química',
+                'codigo' => 'IN122',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 4
+            ],//76
+            [
+                'nombre' => 'Sistemas de Representación Gráfica',
+                'codigo' => 'IN131',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 4
+            ],//77
+            [
+                'nombre' => 'Ingeniería y Sociedad',
+                'codigo' => 'IN161',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 4
+            ],78
+            [
+                'nombre' => 'Cálculo 2',
+                'codigo' => 'IN211',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 4
+            ],//79
+            [
+                'nombre' => 'Probabilidad y Estadística 1',
+                'codigo' => 'IN213',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 4
+            ],//80
+            [
+                'nombre' => 'Física 2',
+                'codigo' => 'IN221',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 4
+            ],//81
+            [
+                'nombre' => 'Informática',
+                'codigo' => 'IN241',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 4
+            ],//82
+            [
+                'nombre' => 'Matemática Aplicada',
+                'codigo' => 'IN212',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 4
+            ],//83
+            [
+                'nombre' => 'Mecánica Racional',
+                'codigo' => 'IN222',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 4
+            ],//84
+            [
+                'nombre' => 'Termodinámica',
+                'codigo' => 'IN231',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 4
+            ],//85
+            [
+                'nombre' => 'Estática y Resistencia de Materiales',
+                'codigo' => 'IN253',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 4
+            ],//
+            [
+                'nombre' => 'Ingeniería e Industrias',
+                'codigo' => 'IN261',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 4
+            ],//
+            [
+                'nombre' => 'Mecánica de los Fluidos y Máquinas',
+                'codigo' => 'IN332',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 4
+            ],//
+            [
+                'nombre' => 'Electrotécnia y Máquinas Eléctricas',
+                'codigo' => 'IN338',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 4
+            ],//
+            [
+                'nombre' => 'Electrónica',
+                'codigo' => 'IN341',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 4
+            ],//
+            [
+                'nombre' => 'Sistemas de Producción',
+                'codigo' => 'IN363',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 4
+            ],//
+            [
+                'nombre' => 'Probabilidad y Estadística 2',
+                'codigo' => 'IN362',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 4
+            ],//
+            [
+                'nombre' => 'Ciencia de los Materiales',
+                'codigo' => 'IN335',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 4
+            ],//
+            [
+                'nombre' => 'Ingeniería Económica',
+                'codigo' => 'IN361',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 4
+            ],//
+            [
+                'nombre' => 'Matemática 1',
+                'codigo' => 'IC101',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => 'Álgebra',
+                'codigo' => 'IC102',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => 'Algoritmos y Estructuras de Datos',
+                'codigo' => 'IC103',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => 'Fundamentos de Informática',
+                'codigo' => 'IC111',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => 'Inglés Técnico 1',
+                'codigo' => 'IC112',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => 'Sistemas de Representación',
+                'codigo' => 'IC121',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => 'Química',
+                'codigo' => 'IC122',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => 'Matemática 2',
+                'codigo' => 'IC211',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => 'Física Mecánica',
+                'codigo' => 'IC212',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => 'Fundamentos de Computación 1',
+                'codigo' => 'IC213',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => 'Arquitectura de Computadoras',
+                'codigo' => 'IC221',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => 'Matemática 3',
+                'codigo' => 'IC222',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => '',
+                'codigo' => 'IC',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => '',
+                'codigo' => 'IC',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => '',
+                'codigo' => 'IC',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => '',
+                'codigo' => 'IC',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => '',
+                'codigo' => 'IC',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => '',
+                'codigo' => 'IC',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 5
+            ],//
+            [
+                'nombre' => '',
+                'codigo' => 'IC',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 5
+            ]
         ]);
 
         DB::table('equivalencia')->insert([
