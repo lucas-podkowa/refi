@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
                 ['codigo' => 'IN', 'nombre' => 'Ingeniería Industrial'], //4
                 ['codigo' => 'IC', 'nombre' => 'Ingeniería en Computación'], //5
                 ['codigo' => 'IM', 'nombre' => 'Ingeniería Mecatrónica'],//6
-                ['codigo' => 'LHyST', 'nombre' => 'Licenciatura en Higiene y Seguridad en el Trabajo'],
+                ['codigo' => 'LHyST', 'nombre' => 'Licenciatura en Higiene y Seguridad en el Trabajo'],//7
             ]
         );
 
@@ -1174,22 +1174,286 @@ class DatabaseSeeder extends Seeder
                 'carrera_id' => 6
             ],//140
             [
-                'nombre' => '',
-                'codigo' => 'IM',
+                'nombre' => 'Álgebra y Geometría Analítica',
+                'codigo' => '111',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 7
+            ],//141
+            [
+                'nombre' => 'Cálculo 1',
+                'codigo' => '112',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 7
+            ],//142
+            [
+                'nombre' => 'Física 1',
+                'codigo' => '113',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 7
+            ],//143
+            [
+                'nombre' => 'Química',
+                'codigo' => '213',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 7
+            ],//144
+            [
+                'nombre' => 'Taller de Inglés 1',
+                'codigo' => '011',
+                'ciclo' => 1,
+                'responsable' => null,
+                'dictado_id' => 1,
+                'carrera_id' => 7
+            ],//145
+            [
+                'nombre' => 'HST I - Introducción',
+                'codigo' => '700',
                 'ciclo' => 2,
                 'responsable' => null,
-                'dictado_id' => ,
-                'carrera_id' => 6
-            ]
+                'dictado_id' => 2,
+                'carrera_id' => 7
+            ],//146
+            [
+                'nombre' => 'HST II - Derecho del Trabajo',
+                'codigo' => '701',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 7
+            ],//147
+            [
+                'nombre' => 'HST III - Medicina del Trabajo',
+                'codigo' => '702',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 7
+            ],//148
+            [
+                'nombre' => 'HST IV - Establecimientos',
+                'codigo' => '703',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 7
+            ],//149
+            [
+                'nombre' => 'HST V - Carga Térmica',
+                'codigo' => '704',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 7
+            ],//150
+            [
+                'nombre' => 'HST VI - Contaminación Química',
+                'codigo' => '705',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 7
+            ],//151
+            [
+                'nombre' => 'HST VII - Radiaciones',
+                'codigo' => '706',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 7
+            ],//152
+            [
+                'nombre' => 'HST VIII - Soldadura',
+                'codigo' => '707',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 7
+            ],//153
+            [
+                'nombre' => 'HST IX - Iluminación y Color',
+                'codigo' => '708',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 7
+            ],//154
+            [
+                'nombre' => 'HST X - Ruido',
+                'codigo' => '709',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 7
+            ],//155
+            [
+                'nombre' => 'HST XI - Electricidad',
+                'codigo' => '710',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 7
+            ],//156
+            [
+                'nombre' => 'HST XII - Máquinas y Herramientas',
+                'codigo' => '711',
+                'ciclo' => 2,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 7
+            ],//157
+            [
+                'nombre' => 'HST XII - Fuego',
+                'codigo' => '712',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 7
+            ],//158
+            [
+                'nombre' => 'HST XIV - Elementos de Protección Personal',
+                'codigo' => '713',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 7
+            ],//159
+            [
+                'nombre' => 'HST XV - Selección y Capacitación de Personal',
+                'codigo' => '714',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 7
+            ],//160
+            [
+                'nombre' => 'HST XVI - Costos e Indicadores',
+                'codigo' => '715',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 7
+            ],//161
+            [
+                'nombre' => 'HST XVII - Ergonomía',
+                'codigo' => '716',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 7
+            ],//162
+            [
+                'nombre' => 'HST XVIII - Trabajos Rurales',
+                'codigo' => '717',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 2,
+                'carrera_id' => 7
+            ],//163
+            [
+                'nombre' => 'Metodología de la Investigación',
+                'codigo' => '718',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 7
+            ],//164
+            [
+                'nombre' => 'Termodinámica y Máquinas',
+                'codigo' => '222',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 7
+            ],//165
+            [
+                'nombre' => 'Economía y Organización de la Producción',
+                'codigo' => '451',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 7
+            ],//166
+            [
+                'nombre' => 'Probabilidad y Estadística',
+                'codigo' => '219',
+                'ciclo' => 3,
+                'responsable' => null,
+                'dictado_id' => 3,
+                'carrera_id' => 7
+            ]//167
         ]);
 
         DB::table('equivalencia')->insert([
-            ['asignatura_1' => 1, 'asignatura_2' => 26], // Algebra y Geometría Analítica / Algebra
-            ['asignatura_1' => 1, 'asignatura_2' => 50], // Algebra y Geometría Analítica / Algebra
-            ['asignatura_1' => 2, 'asignatura_2' => 27], // Cálculo 1 / Matemática 1
-            ['asignatura_1' => 2, 'asignatura_2' => 51], // Cálculo 1 / Matemática 1
-            ['asignatura_1' => 7, 'asignatura_2' => 32], // Cálculo 2 
-            ['asignatura_1' => 7, 'asignatura_2' => 56], // Cálculo 2
+            ['asignatura_1' => 1, 'asignatura_2' => 25], // Algebra y Geometría Analítica / Algebra
+            ['asignatura_1' => 1, 'asignatura_2' => 49], 
+            ['asignatura_1' => 1, 'asignatura_2' => 71], 
+            ['asignatura_1' => 1, 'asignatura_2' => 96], 
+            ['asignatura_1' => 1, 'asignatura_2' => 118], 
+            ['asignatura_1' => 1, 'asignatura_2' => 141], 
+            ['asignatura_1' => 2, 'asignatura_2' => 26], // Cálculo 1 / Matemática 1
+            ['asignatura_1' => 2, 'asignatura_2' => 50],
+            ['asignatura_1' => 2, 'asignatura_2' => 72],
+            ['asignatura_1' => 2, 'asignatura_2' => 95],
+            ['asignatura_1' => 2, 'asignatura_2' => 119],
+            ['asignatura_1' => 2, 'asignatura_2' => 142],
+            ['asignatura_1' => 3, 'asignatura_2' => 27],
+            ['asignatura_1' => 3, 'asignatura_2' => 51],
+            ['asignatura_1' => 3, 'asignatura_2' => 73],
+            ['asignatura_1' => 3, 'asignatura_2' => 120],            
+            ['asignatura_1' => 3, 'asignatura_2' => 143],
+            ['asignatura_1' => 4, 'asignatura_2' => 28],
+            ['asignatura_1' => 4, 'asignatura_2' => 52],            
+            ['asignatura_1' => 4, 'asignatura_2' => 74],
+            ['asignatura_1' => 4, 'asignatura_2' => 123],
+            ['asignatura_1' => 4, 'asignatura_2' => 144],            
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],            
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],            
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],            
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],            
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],            
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],            
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],            
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],            
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],            
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],
+            ['asignatura_1' => , 'asignatura_2' => ],            
+            ['asignatura_1' => , 'asignatura_2' => ],
         ]);
 
         DB::table('evento')->insert([
