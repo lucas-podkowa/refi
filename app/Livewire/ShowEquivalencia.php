@@ -5,12 +5,10 @@ namespace App\Livewire;
 use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Dictado;
-use App\Models\Evento;
-use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class ShowAsignatura extends Component
+class ShowEquivalencia extends Component
 {
     public $open_edit = false;
     public $open_show = false;
@@ -22,20 +20,31 @@ class ShowAsignatura extends Component
     public $dictados, $filtroDictado = '';
     public $ciclos = [], $filtroAño = '';
     public $equivalencias;
-    public $eventos_asignatura = [];
-    public $asignatura_selected = null;
     public $asignaturaEdit_id;
     public $asignaturaEdit = [];
+
+    //public $asignaturas;
+    public $selectedAsignatura = null;
+    public $equivalentes;
+    public $noEquivalentes;
+
 
     use WithPagination;
 
 
     public function mount()
     {
+        //$this->asignaturas = Asignatura::all();
+        $this->selectedAsignatura = null;
+        $this->equivalentes = collect();
+        $this->noEquivalentes = collect();
+
         $this->carreras = Carrera::all();
         $this->dictados = Dictado::all();
         $this->ciclos = Asignatura::distinct()->pluck('ciclo')->toArray();
     }
+
+
 
     public function render()
     {
@@ -59,7 +68,8 @@ class ShowAsignatura extends Component
         $asignaturas = $asignaturas->orderBy($this->sort, $this->direction)
             ->paginate(20);
 
-        return view('livewire.show-asignatura', compact('asignaturas'));
+        //dd($asignaturas);
+        return view('livewire.show-equivalencia', compact('asignaturas'));
     }
 
     public function order($sort)
@@ -77,42 +87,74 @@ class ShowAsignatura extends Component
     }
 
     //------------------------------------------------------------------------
-    //------ Metodo llamado al precionar el botor show de cada fila (eye) --------
-    //------------------------------------------------------------------------
-    public function detail($id)
-    {
-        $this->resetValidation();
-        $this->reset(['open_detail', 'asignatura_selected', 'eventos_asignatura']);
-        // Obtener IDs de las asignaturas equivalentes
-        $this->asignatura_selected = Asignatura::find($id);
-        $directas = $this->asignatura_selected->equivalencias->pluck('id')->toArray();
-        $inversas = $this->asignatura_selected->equivalenciasInversas->pluck('id')->toArray();
-        $equivalencias = array_unique(array_merge($directas, $inversas, [$id]));
-
-        $this->eventos_asignatura = Evento::whereIn('asignatura_id', $equivalencias)
-            ->where('fecha', '>=', Carbon::today())
-            ->get();
-
-        $this->open_detail = true;
-    }
-    //------------------------------------------------------------------------
-
-    //------------------------------------------------------------------------
     //------ Metodo llamado al precionar el botor editar de cada fila --------
     //------------------------------------------------------------------------
+
+    // public function selectAsignatura($id)
+    // {
+    //     $this->selectedAsignatura = Asignatura::find($id);
+    //     $this->equivalentes = $this->selectedAsignatura->equivalencias;
+
+    //     $equivalentesIds = $this->equivalentes->pluck('asignatura_id')->toArray();
+    //     $this->noEquivalentes = Asignatura::whereNotIn('asignatura_id', $equivalentesIds)
+    //                                       ->where('asignatura_id', '!=', $id)
+    //                                       ->get();
+    // }
+
+
     public function edit($id)
     {
         $this->resetValidation();
-        $this->open_edit = true;
-        $this->asignatura_selected = Asignatura::find($id);
+
+        $this->reset(['open_detail', 'selectedAsignatura']);
+        // Obtener IDs de las asignaturas equivalentes
+        $this->selectedAsignatura = Asignatura::find($id);
+
+        $directas = $this->selectedAsignatura->equivalencias->pluck('id')->toArray();
+        $inversas = $this->selectedAsignatura->equivalenciasInversas->pluck('id')->toArray();
+
+        $equivalentesIds = array_unique(array_merge($directas, $inversas));
+        $this->equivalentes = Asignatura::whereIn('id', $equivalentesIds)->get();
+
+        $this->noEquivalentes = Asignatura::whereNotIn('id', $equivalentesIds)
+            ->where('id', '!=', $id)
+            ->get();
+
         $this->asignaturaEdit_id = $id;
-        $this->asignaturaEdit['ciclo'] = $this->asignatura_selected->ciclo;
-        $this->asignaturaEdit['dictado_id'] = $this->asignatura_selected->dictado_id;
-        $this->asignaturaEdit['responsable'] = $this->asignatura_selected->responsable;
-        $this->asignaturaEdit['nombre'] = $this->asignatura_selected->nombre;
-        $this->asignaturaEdit['codigo'] = $this->asignatura_selected->codigo;
+        $this->open_edit = true;
     }
     //------------------------------------------------------------------------
+
+
+    public function moverAEquivalentes($id)
+    {
+        $asignatura = $this->buscarAsignatura($id, $this->noEquivalentes);
+        if ($asignatura) {
+            $this->noEquivalentes = array_filter($this->noEquivalentes, fn ($item) => $item['id'] !== $id);
+            $this->equivalentes[] = $asignatura;
+        }
+    }
+
+    public function moverANoEquivalentes($id)
+    {
+        $asignatura = $this->buscarAsignatura($id, $this->equivalentes);
+        if ($asignatura) {
+            $this->equivalentes = array_filter($this->equivalentes, fn ($item) => $item['codigo'] !== $id);
+            $this->noEquivalentes[] = $asignatura;
+        }
+    }
+
+    private function buscarAsignatura($id, $lista)
+    {
+        foreach ($lista as $asignatura) {
+            if ($asignatura['id'] === $id) {
+                return $asignatura;
+            }
+        }
+        return null;
+    }
+
+
 
     public function update()
     {

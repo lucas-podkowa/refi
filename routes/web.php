@@ -7,15 +7,15 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CalendarioController;
 use App\Livewire\ShowAsignatura;
 use App\Livewire\ShowCarrera;
+use App\Livewire\ShowEquivalencia;
 use App\Livewire\ShowEvento;
 
 Route::get('/', HomeController::class);
-
-Route::get('carrera', ShowCarrera::class)->name('carreras');
-
-Route::get('evento', ShowEvento::class)->name('eventos');
-
 Route::get('asignatura', ShowAsignatura::class)->name('asignaturas');
+Route::get('evento', ShowEvento::class)->name('eventos');
+Route::get('carrera', ShowCarrera::class)->name('carreras');
+Route::get('equivalencia', ShowEquivalencia::class)->name('equivalencias');
+
 
 
 //Route::get('carrera/{codigo}', ShowCarrera::class);
