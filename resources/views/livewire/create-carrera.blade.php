@@ -26,9 +26,13 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-secondary-button wire:click="$set('open', false)">Cancelar</x-secondary-button>
+            <x-secondary-button class="mr-2" wire:click="$set('open', false)">
+                Cancelar
+            </x-secondary-button>
 
-            <x-danger-button wire:click="save" wire:loading.remove wire:target="save">Crear</x-danger-button>
+            <x-danger-button wire:click="save" wire:loading.remove wire:target="save">
+                Crear
+            </x-danger-button>
 
             <span wire:loading wire:target="save">Cargando ...</span>
         </x-slot>

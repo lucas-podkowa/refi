@@ -194,68 +194,85 @@
 
 
             <x-slot name="content">
+                <fieldset>
+                    <div class="mt-4 flex">
+                        <!-- Contenedor para Nombre -->
+                        <div class="flex-1 mr-3">
+                            <x-label value="Nombre" />
+                            <x-input wire:model.live="nombre_edit" type="text"
+                                class="w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" />
+                            @error('nombre')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
 
-                <div class="form-group mt-2">
-                    <x-label value="nombre" />
-                    <x-input wire:model="asignaturaEdit['nombre']" type="text"
-                        class="flex-1 mr-4 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" />
-                    @error('nombre')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
+                        <!-- Contenedor para Código -->
+                        <div class="flex-3 ml-2">
+                            <x-label value="Código" />
+                            <x-input wire:model.live="codigo_edit" type="text"
+                                class="w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" />
+                            @error('codigo')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
 
-                <div class="form-group mt-2">
-                    <x-label value="codigo" />
-                    <x-input wire:model="asignaturaEdit['codigo']" type="text"
-                        class="flex-1 mr-4 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" />
-                    @error('codigo')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="mt-4 grid">
-                    <x-label value="Dictado" />
-                    <select wire:model="asignaturaEdit['dictado_id']"
-                        class="flex-1 appearance-none border 
-                            border-gray-300 
-                            focus:border-indigo-500 
-                            focus:ring-indigo-500 
-                            rounded-md 
-                            shadow-sm">
-                        @foreach ($dictados as $dictado)
-                            <option value="{{ $dictado->id }}">
-                                {{ $dictado->nombre }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('actividad_id')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="flex space-x-4 mt-2">
-                    <div class="form-group ">
-                        <x-label value="Año" />
-                        <select wire:model.live="asignaturaEdit['ciclo']"
-                            class="mr-4 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
-                            @foreach ($ciclos as $ciclo)
-                                <option value="{{ $ciclo }}">
-                                    {{ $ciclo }}
-                                </option>
-                            @endforeach
-                        </select>
                     </div>
-                </div>
+                </fieldset>
 
 
-                <div class="form-group mt-2">
+                <fieldset>
+                    <div class="mt-4 flex gap-2">
+                        <!-- Contenedor para Carrera -->
+                        <div class="flex-1 mr-3">
+                            <x-label value="Carrera" />
+                            <select wire:model.live="carrera_id_edit"
+                                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                                @foreach ($carreras as $carrera)
+                                    <option value="{{ $carrera->id }}">
+                                        {{ $carrera->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Contenedor para Ciclo -->
+                        <div class="flex-1 mr-2">
+                            <x-label value="Año" />
+                            <select wire:model.live="ciclo_edit"
+                                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                                @foreach ($ciclos as $ciclo)
+                                    <option value="{{ $ciclo }}">
+                                        {{ $ciclo }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Contenedor para Dictado -->
+                        <div class="mr-2">
+                            <x-label value="Dictado" />
+                            <select wire:model.live="dictado_id_edit"
+                                class="mr-4 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                                @foreach ($dictados as $dictado)
+                                    <option value="{{ $dictado->id }}">
+                                        {{ $dictado->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
+                    </div>
+                </fieldset>
+                <div class="form-group mt-4">
                     <x-label value="Responsable" />
-                    <x-input wire:model="asignaturaEdit['responsable']" type="text"
+                    <x-input wire:model="responsable_edit" type="text"
                         class="flex-1 mr-4 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" />
                     @error('responsable')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+               
             </x-slot>
 
             <x-slot name="footer">

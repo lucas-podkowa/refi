@@ -27,6 +27,14 @@ class ShowAsignatura extends Component
     public $asignaturaEdit_id;
     public $asignaturaEdit = [];
 
+    //--- campos para el formulario de edicion ----------------------------------- 
+    public $ciclo_edit;
+    public $dictado_id_edit;
+    public $responsable_edit;
+    public $nombre_edit;
+    public $codigo_edit;
+    //--- campos para el formulario de edicion -----------------------------------
+
     use WithPagination;
 
 
@@ -39,7 +47,6 @@ class ShowAsignatura extends Component
 
     public function render()
     {
-
         $asignaturas = Asignatura::where(function ($query) {
             $query->where('nombre', 'like', "%{$this->search}%")
                 ->orWhere('codigo', 'like', "%{$this->search}%");
@@ -76,9 +83,9 @@ class ShowAsignatura extends Component
         }
     }
 
-    //------------------------------------------------------------------------
+    //----------------------------------------------------------------------------
     //------ Metodo llamado al precionar el botor show de cada fila (eye) --------
-    //------------------------------------------------------------------------
+    //----------------------------------------------------------------------------
     public function detail($id)
     {
         $this->resetValidation();
@@ -106,21 +113,22 @@ class ShowAsignatura extends Component
         $this->open_edit = true;
         $this->asignatura_selected = Asignatura::find($id);
         $this->asignaturaEdit_id = $id;
-        $this->asignaturaEdit['ciclo'] = $this->asignatura_selected->ciclo;
-        $this->asignaturaEdit['dictado_id'] = $this->asignatura_selected->dictado_id;
-        $this->asignaturaEdit['responsable'] = $this->asignatura_selected->responsable;
-        $this->asignaturaEdit['nombre'] = $this->asignatura_selected->nombre;
-        $this->asignaturaEdit['codigo'] = $this->asignatura_selected->codigo;
+
+        $this->ciclo_edit = $this->asignatura_selected->ciclo;
+        $this->dictado_id_edit = $this->asignatura_selected->dictado_id;
+        $this->responsable_edit = $this->asignatura_selected->responsable;
+        $this->nombre_edit = $this->asignatura_selected->nombre;
+        $this->codigo_edit = $this->asignatura_selected->codigo;
     }
     //------------------------------------------------------------------------
 
     public function update()
     {
         $this->validate([
-            'asignaturaEdit.nombre' => 'required|max:100',
-            'asignaturaEdit.codigo' => 'required|max:8',
-            'asignaturaEdit.ciclo' => 'required',
-            'asignaturaEdit.dictado_id' => 'required'
+            'nombre_edit' => 'required|max:100',
+            'codigo_edit' => 'required|max:8',
+            'ciclo_edit' => 'required',
+            'dictado_id_edit' => 'required'
         ]);
 
         $asignatura = Asignatura::find($this->asignaturaEdit_id);
@@ -130,6 +138,7 @@ class ShowAsignatura extends Component
             'ciclo' =>  $this->asignaturaEdit['ciclo'],
             'dictado_id' =>  $this->asignaturaEdit['dictado_id'],
             'responsable' =>  $this->asignaturaEdit['responsable'],
+
         ]);
 
         $this->reset(['open_edit', 'asignaturaEdit', 'nombre', 'codigo', 'ciclo', 'responsable', 'dictado_id']);

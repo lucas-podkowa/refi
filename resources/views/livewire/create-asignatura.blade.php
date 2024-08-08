@@ -36,8 +36,6 @@
 
                     </div>
                 </fieldset>
-
-
                 <fieldset>
                     <div class="mt-4 flex gap-2">
                         <!-- Contenedor para Carrera -->
@@ -82,9 +80,14 @@
 
                     </div>
                 </fieldset>
-
-
-
+                <div class="form-group mt-4">
+                    <x-label value="Responsable" />
+                    <x-input wire:model="asignaturaEdit['responsable']" type="text"
+                        class="flex-1 mr-4 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" />
+                    @error('responsable')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
 
             </x-slot>
 
