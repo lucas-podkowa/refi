@@ -8,36 +8,27 @@ use App\Models\Carrera;
 use App\Models\Evento;
 use App\Models\Turno;
 use Carbon\Carbon;
-use DateTime;
 use Livewire\Component;
 
 class CreateEvento extends Component
 {
+
+    //---- campos del formulario ----------
+    public $actividad_id = null;
+    public $carrera_id = null;
+    public $selectedCiclo = null;
+    public $asignatura_id = null;
+    public $fecha;
+    public $turno_id;
+    public $observacion;
+
+    //-------------------------------------
     public $open = false; //sirve para que el modal no se visualice al renderizar el componente
     public $actividades = [];
     public $carreras = [];
     public $turnos = [];
     public $ciclos;
     public $asignaturas = [];
-    public $carrera_id = null;
-    public $asignatura_id = null;
-    public $selectedCiclo = null;
-    public $actividad_id;
-    public $turno_id;
-    public $fecha;
-    public $hora_inicio;
-    public $hora_fin;
-    public $observacion;
-
-
-    public function mount()
-    {
-        $this->actividades = Actividad::all();
-        $this->carreras = Carrera::all();
-        $this->turnos = Turno::all();
-        $this->ciclos = collect();
-        $this->asignaturas = collect();
-    }
 
     protected $rules = [
         'fecha' => 'required|date',
@@ -47,17 +38,49 @@ class CreateEvento extends Component
     ];
 
 
-    public function updatedCarreraId($carrera_id)
+    public function mount()
     {
-        $this->ciclos = Asignatura::distinct()->pluck('ciclo')->toArray();
-        $this->selectedCiclo = null;
+        $this->actividades = Actividad::all();
+        $this->carreras = Carrera::all();
+        $this->turnos = Turno::all();
+        $this->ciclos = collect();
+        $this->asignaturas = collect();
+
+        // if ($this->actividades->isNotEmpty()) {
+        //     $this->actividad_id = $this->actividades->first()->id;
+        // }
+        // if ($this->carreras->isNotEmpty()) {
+        //     $this->carrera_id = $this->carreras->first()->id;
+        //     //dd($this->carrera_id);
+        // }
     }
 
-    public function updatedSelectedCiclo($selectedCiclo)
+   
+    public function updating($property, $value)
     {
-        $this->asignaturas = Asignatura::where('carrera_id', $this->carrera_id)
-            ->where('ciclo', $selectedCiclo)->get();
+        if ($property == 'carrera_id') {
+            $this->reset(['asignaturas', 'asignatura_id']);
+            $this->ciclos = Asignatura::distinct()->pluck('ciclo')->toArray();
+        }
+        if ($property == 'selectedCiclo') {
+            $this->reset(['asignatura_id']);
+            //$this->asignatura_id = null;
+            $this->asignaturas = Asignatura::where('carrera_id', $this->carrera_id)
+                ->where('ciclo', $value)->get();
+        }
     }
+    
+    public function updated($property, $value)
+    {
+        if ($property == 'carrera_id') {
+            $this->selectedCiclo = $this->ciclos[0] ?? null;
+        }
+        if ($property == 'selectedCiclo') {
+            $this->asignatura_id = $this->asignaturas[0]->id ?? null;
+        }
+    }
+
+
 
     public function save()
     {
@@ -66,13 +89,14 @@ class CreateEvento extends Component
 
         // Obtener las equivalencias de la asignatura y luego añadir la propia asignatura al array de equivalencias
         $asignatura = Asignatura::find($this->asignatura_id);
-        $equivalencias = $asignatura->equivalencias->pluck('id')->toArray();
-        $equivalencias[] = (int) $this->asignatura_id;
+        $directas = $asignatura->equivalencias->pluck('id')->toArray();
+        $inversas = $asignatura->equivalenciasInversas->pluck('id')->toArray();
+        $equivalencias_id = array_unique(array_merge($directas, $inversas));
+        //$equivalencias = Asignatura::whereIn('id', $equivalentesIds)->get();
 
-       
         // Comprobar si existe un evento en la misma fecha para la asignatura o sus equivalencias
         $eventoFecha = Evento::where('fecha', Carbon::parse($this->fecha))
-            ->whereIn('asignatura_id', $equivalencias)
+            ->whereIn('asignatura_id', $equivalencias_id)
             ->first();
 
         if ($eventoFecha) {
@@ -80,7 +104,7 @@ class CreateEvento extends Component
             return;
         }
 
-                
+
         // Comprobar si existe un evento en el mismo turno para otras asignaturas del mismo ciclo
         $ciclo = $asignatura->ciclo;
         $eventoMismoCiclo = Evento::where('turno_id', $this->turno_id)
@@ -106,7 +130,15 @@ class CreateEvento extends Component
         ]);
 
         // Resetear los campos después de guardar
-        $this->reset(['open','fecha', 'hora_inicio', 'hora_fin', 'observacion', 'actividad_id', 'asignatura_id']);
+        $this->reset([
+            'actividad_id',
+            'open',
+            'fecha',
+            'observacion',
+            'asignatura_id',
+            'selectedCiclo',
+            'carrera_id'
+        ]);
 
         //aviso al listado que vuelva a renderizar ahora con el nuevo campo
         $this->dispatch('render');

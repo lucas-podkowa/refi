@@ -17,7 +17,8 @@
                 <fieldset>
                     <div class="mt-4 grid">
                         <x-label value="Actividad" />
-                        <select wire:model.live="actividad_id"
+                        <select 
+                        wire:model.live="actividad_id"
                             class="flex-1 appearance-none border 
                             border-gray-300 
                             focus:border-indigo-500 
@@ -30,9 +31,9 @@
                                 </option>
                             @endforeach
                         </select>
-                        @error('actividad_id')
+                        {{-- @error('actividad_id')
                             <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        @enderror --}}
                     </div>
                 </fieldset>
 
@@ -129,8 +130,4 @@
 
         </x-dialog-modal>
     </form>
-
-    {{-- ------------------------  DIALOG MODAL visualizado al precionar el boton editar --------------------------- --}}
-
-</div>
 </div>

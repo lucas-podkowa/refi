@@ -21,8 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('carrera_id');
             $table->foreign('dictado_id')->references('id')->on('dictado')->onDelete('cascade');
             $table->foreign('carrera_id')->references('id')->on('carrera')->onDelete('cascade');
-            // $table->foreignId('dictado')->constrained('dictado')->onDelete('cascade');
-            // $table->foreignId('carrera')->constrained('carrera')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

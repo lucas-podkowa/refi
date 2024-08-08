@@ -12,9 +12,10 @@ class Asignatura extends Model
     protected $fillable = [
         'nombre',
         'codigo', 
-        'dictado',
-        'carrera',
-        'ciclo'
+        'dictado_id',
+        'carrera_id',
+        'ciclo',
+        'responsable'
     ];
 
     public function eventos()

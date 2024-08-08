@@ -1,13 +1,11 @@
 <div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-
         <x-table>
-
             {{-- ------------------- Filtros de la tabla ------------------------------------------------------- --}}
             <div class="px-6 py-4 flex">
                 <!-- input de jetstream utilizado para el buscador -->
-                <x-input wire:model.live="search" placeholder="Buscar Asignatura" type="text" class="flex-1 mr-4" />
+                <x-input wire:model.live="search" placeholder="Nombre de Asignatura" type="text" class="flex-1 mr-4" />
 
                 <select wire:model.live="filtroCarrera"
                     class="flex-1 mr-4 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
@@ -38,12 +36,12 @@
                 </select>
 
                 {{-- este es un componente hijo, tiene un boton y el formulario para crear una carrera --}}
-                {{-- @livewire('create-carrera') --}}
-
+                
+                @livewire('create-asignatura')
             </div>
             {{-- ------------------- Filtros de la tabla ------------------------------------------------------- --}}
 
-
+            
 
             {{-- $asignaturas esta en el metodo render de la clase y es enviada aqui como un parametro --}}
             @if ($asignaturas->count())
@@ -286,7 +284,6 @@
             @endif
         </x-slot>
 
-
         <x-slot name="content">
 
             <x-table>
@@ -377,7 +374,6 @@
             </x-table>
 
         </x-slot>
-
 
         <x-slot name="footer">
             <x-secondary-button class="mr-2" wire:click="$set('open_detail', false)">

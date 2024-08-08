@@ -12,7 +12,7 @@ class ShowEquivalencia extends Component
 {
     public $open_edit = false;
     public $open_show = false;
-    public $open_detail = false;
+    //public $open_detail = false;
     public $search = '';
     public $sort = 'nombre';
     public $direction = 'asc';
@@ -36,8 +36,8 @@ class ShowEquivalencia extends Component
     {
         //$this->asignaturas = Asignatura::all();
         $this->selectedAsignatura = null;
-        $this->equivalentes = collect();
-        $this->noEquivalentes = collect();
+        $this->equivalentes = [];
+        $this->noEquivalentes = [];
 
         $this->carreras = Carrera::all();
         $this->dictados = Dictado::all();
@@ -106,7 +106,7 @@ class ShowEquivalencia extends Component
     {
         $this->resetValidation();
 
-        $this->reset(['open_detail', 'selectedAsignatura']);
+        $this->reset(['open_edit', 'selectedAsignatura']);
         // Obtener IDs de las asignaturas equivalentes
         $this->selectedAsignatura = Asignatura::find($id);
 
@@ -114,11 +114,11 @@ class ShowEquivalencia extends Component
         $inversas = $this->selectedAsignatura->equivalenciasInversas->pluck('id')->toArray();
 
         $equivalentesIds = array_unique(array_merge($directas, $inversas));
-        $this->equivalentes = Asignatura::whereIn('id', $equivalentesIds)->get();
+        $this->equivalentes = Asignatura::whereIn('id', $equivalentesIds)->get()->toArray();
 
         $this->noEquivalentes = Asignatura::whereNotIn('id', $equivalentesIds)
             ->where('id', '!=', $id)
-            ->get();
+            ->get()->toArray();
 
         $this->asignaturaEdit_id = $id;
         $this->open_edit = true;
@@ -138,8 +138,11 @@ class ShowEquivalencia extends Component
     public function moverANoEquivalentes($id)
     {
         $asignatura = $this->buscarAsignatura($id, $this->equivalentes);
+
         if ($asignatura) {
-            $this->equivalentes = array_filter($this->equivalentes, fn ($item) => $item['codigo'] !== $id);
+            $this->equivalentes = array_filter($this->equivalentes, function ($item) use ($id){
+                return $item['id'] != $id;
+            });
             $this->noEquivalentes[] = $asignatura;
         }
     }
@@ -147,7 +150,7 @@ class ShowEquivalencia extends Component
     private function buscarAsignatura($id, $lista)
     {
         foreach ($lista as $asignatura) {
-            if ($asignatura['id'] === $id) {
+            if ($asignatura['id'] == $id) {
                 return $asignatura;
             }
         }

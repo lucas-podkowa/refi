@@ -25,9 +25,9 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         DB::table('actividad')->insert([
-            ['nombre' => 'Examen Final', 'codigo' => 'Final'],
-            ['nombre' => 'Examen Parcial', 'codigo' => 'Parcial'],
-            ['nombre' => 'Presentación', 'codigo' => 'Pres']
+            ['nombre' => 'Examen Final', 'codigo' => 'EF'],
+            ['nombre' => 'Examen Parcial', 'codigo' => 'EP'],
+            ['nombre' => 'Presentación', 'codigo' => 'P']
         ]);
 
         DB::table('dictado')->insert([

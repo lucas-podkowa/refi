@@ -6,7 +6,6 @@
 
             {{-- ------------------- Filtros de la tabla ------------------------------------------------------- --}}
             <div class="px-6 py-4 flex">
-                <!-- input de jetstream utilizado para el buscador -->
                 <x-input wire:model.live="search" placeholder="Buscar Asignatura" type="text" class="flex-1 mr-4" />
 
                 <select wire:model.live="filtroCarrera"
@@ -36,10 +35,6 @@
                         </option>
                     @endforeach
                 </select>
-
-                {{-- este es un componente hijo, tiene un boton y el formulario para crear una carrera --}}
-                {{-- @livewire('create-carrera') --}}
-
             </div>
             {{-- ------------------- Filtros de la tabla ------------------------------------------------------- --}}
 
@@ -152,6 +147,54 @@
 
         </x-table>
 
+        {{-- <div>
+            @if ($selectedAsignatura)
+                <h3>Asignatura seleccionada: {{ $selectedAsignatura->nombre }}</h3>
+                <div style="display: flex;">
+                    <div style="margin-right: 20px;">
+                        <h4>Asignaturas Equivalentes</h4>
+                        <ul>
+                            @foreach ($equivalentes as $equivalente)
+                                <li>
+                                    {{ $equivalente['nombre'] }} ({{ $equivalente['codigo'] }})
+                                    <button wire:click="moverANoEquivalentes('{{ $equivalente['id'] }}')">→</button>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Otras Asignaturas</h4>
+                        <ul>
+                            @foreach ($noEquivalentes as $noEquivalente)
+                                <li>
+                                    {{ $noEquivalente['nombre'] }} ({{ $noEquivalente['codigo'] }})
+                                    <button wire:click="moverAEquivalentes('{{ $noEquivalente['id'] }}')">←</button>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
+        </div>
+    </div> --}}
+
+
+
+
+    {{-- ------------------------  DIALOG MODAL visualizado al precionar el boton editar --------------------------- --}}
+
+    <form wire:submit="update">
+        <x-dialog-modal wire:model="open_edit">
+
+            <x-slot name="title">
+                @if ($asignaturaEdit)
+                    Editando equivalencias de {{ $asignaturaEdit['codigo'] }} -
+                    {{ $asignaturaEdit['nombre'] }}
+                @endif
+            </x-slot>
+
+
+            <x-slot name="content">
         <div>
             @if ($selectedAsignatura)
                 <h3>Asignatura seleccionada: {{ $selectedAsignatura->nombre }}</h3>
@@ -181,26 +224,6 @@
                 </div>
             @endif
         </div>
-    </div>
-
-
-
-
-    {{-- ------------------------  DIALOG MODAL visualizado al precionar el boton editar --------------------------- --}}
-
-    {{-- <form wire:submit="update">
-        <x-dialog-modal wire:model="open_edit">
-
-            <x-slot name="title">
-                @if ($asignaturaEdit)
-                    Editando equivalencias de {{ $asignaturaEdit['codigo'] }} -
-                    {{ $asignaturaEdit['nombre'] }}
-                @endif
-            </x-slot>
-
-
-            <x-slot name="content">
-
 
             </x-slot>
 
@@ -215,7 +238,7 @@
             </x-slot>
 
         </x-dialog-modal>
-    </form> --}}
+    </form>
 
     {{-- ------------------------  DIALOG MODAL visualizado al precionar el boton editar --------------------------- --}}
 

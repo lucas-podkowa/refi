@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\ActividadController;
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CalendarioController;
 use App\Livewire\ShowAsignatura;
@@ -10,11 +11,16 @@ use App\Livewire\ShowCarrera;
 use App\Livewire\ShowEquivalencia;
 use App\Livewire\ShowEvento;
 
-Route::get('/', HomeController::class);
+//calendar route
+
+//Route::get('/', [CalendarController::class, 'index'])->name('refi-calendar');
+//--------------
+
 Route::get('asignatura', ShowAsignatura::class)->name('asignaturas');
 Route::get('evento', ShowEvento::class)->name('eventos');
 Route::get('carrera', ShowCarrera::class)->name('carreras');
 Route::get('equivalencia', ShowEquivalencia::class)->name('equivalencias');
+
 
 
 
@@ -39,9 +45,9 @@ Route::get('equivalencia', ShowEquivalencia::class)->name('equivalencias');
 // });
 
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::middleware([
     'auth:sanctum',
