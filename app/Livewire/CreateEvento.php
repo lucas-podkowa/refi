@@ -20,7 +20,7 @@ class CreateEvento extends Component
     public $asignatura_id = null;
     public $fecha;
     public $turno_id;
-    public $observacion;
+    public $observacion = '';
 
     //-------------------------------------
     public $open = false; //sirve para que el modal no se visualice al renderizar el componente

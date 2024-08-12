@@ -64,11 +64,11 @@
         document.addEventListener('livewire:init', () => {
             Livewire.on('alert', (event) => {
                 Swal.fire({
-                    position: "top-end",
+                    position: "bottom-end",
                     icon: "success",
                     title: event.message,
                     showConfirmButton: false,
-                    timer: 2500
+                    timer: 2000
                 });
             });
             Livewire.on('oops', (event) => {
@@ -79,8 +79,6 @@
                     // footer: '<a href="#">Why do I have this issue?</a>'
                 });
             });
-
-
         });
     </script>
 </body>

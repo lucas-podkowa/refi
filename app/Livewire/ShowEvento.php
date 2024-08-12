@@ -109,7 +109,7 @@ class ShowEvento extends Component
     public function delete($evento_id){
         $evento = Evento::find($evento_id);
         $evento->delete();
-        $this->dispatch('alert', message: 'evento eliminado');
+        //$this->dispatch('deleted', message: 'Evento eliminado con exito');
     }
 
     //------------------------------------------------------------------------

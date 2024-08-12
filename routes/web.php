@@ -10,10 +10,14 @@ use App\Livewire\ShowAsignatura;
 use App\Livewire\ShowCarrera;
 use App\Livewire\ShowEquivalencia;
 use App\Livewire\ShowEvento;
+use App\Models\Evento;
 
 //calendar route
 
-//Route::get('/', [CalendarController::class, 'index'])->name('refi-calendar');
+Route::get('/', [CalendarController::class, 'index'])->name('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 //--------------
 
 Route::get('asignatura', ShowAsignatura::class)->name('asignaturas');
@@ -45,9 +49,7 @@ Route::get('equivalencia', ShowEquivalencia::class)->name('equivalencias');
 // });
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::middleware([
     'auth:sanctum',
@@ -55,6 +57,30 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+
+        $etiquetas = array();
+        $eventos = Evento::all();
+        foreach ($eventos as $evento) {
+            $color = null;
+            switch ($evento->actividad->codigo) {
+                case 'Final':
+                    $color = '#ff0000';
+                    break;
+                case 'Parcial':
+                    $color = '#ffaa00';
+                    break;
+                default:
+                    $color = '#00aaff';
+                    break;
+            }
+
+            $etiquetas[] = [
+                'title' => $evento->actividad->codigo . ' - ' . $evento->asignatura->codigo,
+                'start' => $evento->fecha,
+                'color' => $color,
+                'textColor' => '#ffffff'
+            ];
+        }
+        return view('dashboard', ['etiquetas' => $etiquetas]);
     })->name('dashboard');
 });

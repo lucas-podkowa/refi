@@ -36,12 +36,10 @@
                 </select>
 
                 {{-- este es un componente hijo, tiene un boton y el formulario para crear una carrera --}}
-                
+
                 @livewire('create-asignatura')
             </div>
-            {{-- ------------------- Filtros de la tabla ------------------------------------------------------- --}}
-
-            
+            {{-- ------------------- Filtros de la tabla ---------------------------------------------- --}}
 
             {{-- $asignaturas esta en el metodo render de la clase y es enviada aqui como un parametro --}}
             @if ($asignaturas->count())
@@ -201,7 +199,7 @@
                             <x-label value="Nombre" />
                             <x-input wire:model.live="nombre_edit" type="text"
                                 class="w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" />
-                            @error('nombre')
+                            @error('nombre_edit')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -211,7 +209,7 @@
                             <x-label value="Código" />
                             <x-input wire:model.live="codigo_edit" type="text"
                                 class="w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" />
-                            @error('codigo')
+                            @error('codigo_edit')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -268,11 +266,11 @@
                     <x-label value="Responsable" />
                     <x-input wire:model="responsable_edit" type="text"
                         class="flex-1 mr-4 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" />
-                    @error('responsable')
+                    @error('responsable_edit')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-               
+
             </x-slot>
 
             <x-slot name="footer">
@@ -280,7 +278,7 @@
                     Cancelar
                 </x-secondary-button>
 
-                <x-button wire:loading.attr="disabled" class="disabled:opacity-25">
+                <x-button class="disabled:opacity-25">
                     Actualizar
                 </x-button>
             </x-slot>
@@ -294,7 +292,7 @@
 
     <x-dialog-modal wire:model="open_detail">
 
-        <x-slot name="title">
+        <x-slot name="title" class="bg-gray-900">
             @if ($asignatura_selected)
                 Próximos eventos relacionados con {{ $asignatura_selected->codigo }} -
                 {{ $asignatura_selected->nombre }}
@@ -306,29 +304,15 @@
             <x-table>
 
                 {{-- $carreras es esta en el metodo render de la clase y es enviada aqui como un parametro --}}
-                @if ($eventos_asignatura)
+                @if (count($eventos_asignatura) > 0)
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
 
                             <tr>
                                 <th scope="col"
-                                    class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500"
-                                    {{-- aqui disparo "public function order($sort)" que esta en la clase --}} wire:click="order('nombre')">
+                                    class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500">
                                     Fecha
-
-                                    {{-- $sort es una propiedad de la clase --}}
-                                    @if ($sort == 'fecha')
-                                        @if ($direction == 'asc')
-                                            <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-                                        @else
-                                            <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-                                        @endif
-                                    @else
-                                        <i class="fas fa-sort float-right mt-1"></i>
-                                    @endif
-
                                 </th>
-
                                 <th scope="col"
                                     class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500">
                                     Actividad
@@ -369,19 +353,37 @@
                                         </div>
                                     </td>
 
-                                    <td class="px-6 py-3 whitespace-nowrap text-sm font-medium">
-
-                                        {{-- aqui esta el boton editar que dispara el metodo edit y este muestra el modal --}}
-                                        {{-- <a class="btn btn-blue-green" wire:click="edit({{ $evento->evento_id }})">
-                                            <i class="fas fa-edit"></i>
-                                        </a> --}}
-
-                                    </td>
                                 </tr>
                             @endforeach
 
                         </tbody>
                     </table>
+                    @if (count($equivalencias) > 0)
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-blue-100">
+
+                                <tr>
+                                    <th scope="col"
+                                        class="cursor-pointer px-6 py-3 text-right text-xs font-medium text-black">
+                                        Asignaturas Equivalentes relacionadas al Evento
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @foreach ($equivalencias as $eq)
+                                    <tr>
+                                        <td class="px-4 py-1">
+                                            <div class="text-sm text-gray-900">
+                                                {{ $eq->nombre }} ({{ $eq->codigo }} -
+                                                {{ $eq->carrera->nombre }})
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    @endif
                 @else
                     <div class="px-6 py-4">
                         No existen registros para mostrar
@@ -390,7 +392,14 @@
 
             </x-table>
 
+
+            {{-- <x-table>
+               
+
+            </x-table> --}}
+
         </x-slot>
+
 
         <x-slot name="footer">
             <x-secondary-button class="mr-2" wire:click="$set('open_detail', false)">

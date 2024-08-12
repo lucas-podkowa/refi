@@ -22,6 +22,7 @@ class ShowAsignatura extends Component
     public $dictados, $filtroDictado = '';
     public $ciclos = [], $filtroAño = '';
     public $equivalencias;
+    public $equivalencias_id;
     public $eventos_asignatura = [];
     public $asignatura_selected = null;
     public $asignaturaEdit_id;
@@ -33,6 +34,7 @@ class ShowAsignatura extends Component
     public $responsable_edit;
     public $nombre_edit;
     public $codigo_edit;
+    public $carrera_id_edit;
     //--- campos para el formulario de edicion -----------------------------------
 
     use WithPagination;
@@ -92,11 +94,15 @@ class ShowAsignatura extends Component
         $this->reset(['open_detail', 'asignatura_selected', 'eventos_asignatura']);
         // Obtener IDs de las asignaturas equivalentes
         $this->asignatura_selected = Asignatura::find($id);
+
+
         $directas = $this->asignatura_selected->equivalencias->pluck('id')->toArray();
         $inversas = $this->asignatura_selected->equivalenciasInversas->pluck('id')->toArray();
-        $equivalencias = array_unique(array_merge($directas, $inversas, [$id]));
+        $this->equivalencias_id = array_unique(array_merge($directas, $inversas, [$id]));
 
-        $this->eventos_asignatura = Evento::whereIn('asignatura_id', $equivalencias)
+        $this->equivalencias = Asignatura::whereIn('id', $this->equivalencias_id)->get();
+        //dd($this->equivalencias);
+        $this->eventos_asignatura = Evento::whereIn('asignatura_id', $this->equivalencias->pluck('id')->toArray())
             ->where('fecha', '>=', Carbon::today())
             ->get();
 
@@ -119,13 +125,18 @@ class ShowAsignatura extends Component
         $this->responsable_edit = $this->asignatura_selected->responsable;
         $this->nombre_edit = $this->asignatura_selected->nombre;
         $this->codigo_edit = $this->asignatura_selected->codigo;
+        $this->carrera_id_edit = $this->asignatura_selected->carrera->id;
     }
     //------------------------------------------------------------------------
 
     public function update()
     {
         $this->validate([
-            'nombre_edit' => 'required|max:100',
+            'nombre_edit' => [
+                'required',
+                'max:100',
+                'regex:/^(?=.*[a-zA-Z])[a-zA-Z0-9]+$/'
+            ],
             'codigo_edit' => 'required|max:8',
             'ciclo_edit' => 'required',
             'dictado_id_edit' => 'required'
@@ -133,15 +144,22 @@ class ShowAsignatura extends Component
 
         $asignatura = Asignatura::find($this->asignaturaEdit_id);
         $asignatura->update([
-            'nombre' =>  $this->asignaturaEdit['nombre'],
-            'codigo' =>  $this->asignaturaEdit['codigo'],
-            'ciclo' =>  $this->asignaturaEdit['ciclo'],
-            'dictado_id' =>  $this->asignaturaEdit['dictado_id'],
-            'responsable' =>  $this->asignaturaEdit['responsable'],
-
+            'nombre' =>  $this->nombre_edit,
+            'codigo' =>  $this->codigo_edit,
+            'ciclo' =>  $this->ciclo_edit,
+            'dictado_id' =>  $this->dictado_id_edit,
+            'responsable' =>  $this->responsable_edit
         ]);
 
-        $this->reset(['open_edit', 'asignaturaEdit', 'nombre', 'codigo', 'ciclo', 'responsable', 'dictado_id']);
+        $this->reset([
+            'open_edit',
+            'asignaturaEdit',
+            'nombre_edit',
+            'codigo_edit',
+            'ciclo_edit',
+            'responsable_edit',
+            'dictado_id_edit'
+        ]);
 
         //emito el evento alert para que me muestre un mensaje
         $this->dispatch('alert', message: 'Asignatura actualizada');

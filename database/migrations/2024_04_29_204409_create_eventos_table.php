@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('evento', function (Blueprint $table) {
             $table->id();
             $table->date('fecha');
-            $table->string('observacion');
+            $table->string('observacion')->nullable();
             $table->foreignId('turno_id')->constrained('turno');
             $table->foreignId('actividad_id')->constrained('actividad');
             $table->foreignId('asignatura_id')->constrained('asignatura');

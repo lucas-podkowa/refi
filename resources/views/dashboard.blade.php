@@ -7,7 +7,22 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            {{-- aca tiene que ir algun calendario --}}
+            <div id="calendar"> </div>
         </div>
     </div>
+
+
+    <script>
+        $(document).ready(function() {
+            var etiquetas = @json($etiquetas);
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev, today',
+                    center: 'title',
+                    right: 'next'
+                },
+                events: etiquetas
+            })
+        });
+    </script> 
 </x-app-layout>

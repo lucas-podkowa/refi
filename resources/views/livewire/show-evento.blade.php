@@ -50,7 +50,8 @@
                             <th scope="col"
                                 class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500">Asignatura
                             </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500"> Observación
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500">
+                                Observación
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500">Acciones
                             </th>
@@ -97,10 +98,16 @@
                                 <td class="px-6 py-3 whitespace-nowrap text-sm font-medium">
 
                                     {{-- aqui esta el boton editar que dispara el metodo edit y este muestra el modal --}}
-                                    <a class="btn btn-blue-green" wire:click="edit({{ $item->id }})">
+                                    <a class="btn btn-blue-green" href="#" wire:click="edit({{ $item->id }})">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a class="btn btn-blue-green" wire:click="delete({{ $item->id }})">
+                                    {{-- <a class="btn btn-blue-green" href="#"
+                                        onclick="if(confirm('¿Estás seguro de que quieres eliminar este evento?')) { @this.delete({{ $item->id }}) }">
+                                        <i class="fa fa-trash"></i>
+                                    </a> --}}
+
+                                    <a class="btn btn-blue-green" href="#"
+                                        onclick="confirmDeletion({{ $item->id }})">
                                         <i class="fa fa-trash"></i>
                                     </a>
 
@@ -117,7 +124,33 @@
             @endif
 
         </x-table>
-
+        <script>
+            //script para el boton de eliminar
+            function confirmDeletion(eventoId) {
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "¡No podrás revertir esto!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        @this.delete(eventoId); //funcion en la clase ShowEvento.php
+                        Swal.fire({
+                            timer: 2000,
+                            position: "bottom-end",
+                            icon: "info",
+                            title: "Eliminado",
+                            text: "Evento eliminado con exito",
+                            showConfirmButton: false
+                        });
+                    }
+                })
+            }
+        </script>
 
         {{-- ------------------------  DIALOG MODAL visualizado al precionar el boton editar --------------------------- --}}
         <form wire:submit="update">
@@ -189,7 +222,7 @@
                                     {{-- @error('asignatura_id_edit')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror --}}
-                                    <x-input-error for="asignatura_id_edit"/>
+                                    <x-input-error for="asignatura_id_edit" />
                                 </div>
                             @endif
                         </div>
@@ -203,7 +236,7 @@
                             {{-- @error('fecha_edit')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror --}}
-                            <x-input-error for="fecha_edit"/>
+                            <x-input-error for="fecha_edit" />
                         </div>
 
                         <div class="form-group">

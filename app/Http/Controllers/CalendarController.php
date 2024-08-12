@@ -33,6 +33,6 @@ class CalendarController extends Controller
             ];
         }
 
-        return view('refi-calendar', ['etiquetas' => $etiquetas]);
+        return view('welcome', ['etiquetas' => $etiquetas]);
     }
 }

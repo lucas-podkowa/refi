@@ -16,6 +16,7 @@ class CreateAsignatura extends Component
     public $ciclo = null;
     public $carrera_id = null;
     public $dictado_id = null;
+    public $responsable = null;
 
 
     //-------------------------------------
@@ -94,10 +95,11 @@ class CreateAsignatura extends Component
             'ciclo',
             'carrera_id',
             'dictado_id',
+            'open'
         ]);
 
         //aviso al listado que vuelva a renderizar ahora con el nuevo campo
-        //$this->dispatch('render');
+        $this->dispatch('render');
 
         //emito el evento alert para que me muestre un mensaje
         $this->dispatch('alert', message: 'Asignatura creada con éxito');
