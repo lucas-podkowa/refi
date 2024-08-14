@@ -17,8 +17,7 @@
                 <fieldset>
                     <div class="mt-4 grid">
                         <x-label value="Actividad" />
-                        <select 
-                        wire:model.live="actividad_id"
+                        <select wire:model.live="actividad_id"
                             class="flex-1 appearance-none border 
                             border-gray-300 
                             focus:border-indigo-500 
@@ -55,11 +54,15 @@
                                 <x-label value="Año" />
                                 <select wire:model.live="selectedCiclo"
                                     class="mr-4 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
-                                    @foreach ($ciclos as $ciclo)
-                                        <option value="{{ $ciclo }}">
-                                            {{ $ciclo }}
-                                        </option>
-                                    @endforeach
+                                    @if ($ciclos && $ciclos->isNotEmpty())
+                                        @foreach ($ciclos as $ciclo)
+                                            <option value="{{ $ciclo }}">
+                                                {{ $ciclo }}
+                                            </option>
+                                        @endforeach
+                                    @else
+                                        <option value="">Debe seleccionar una Carrera</option>
+                                    @endif
                                 </select>
                             </div>
                         @endif

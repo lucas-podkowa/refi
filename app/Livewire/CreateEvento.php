@@ -18,17 +18,17 @@ class CreateEvento extends Component
     public $carrera_id = null;
     public $selectedCiclo = null;
     public $asignatura_id = null;
+    public $turno_id = null;
     public $fecha;
-    public $turno_id;
     public $observacion = '';
 
     //-------------------------------------
     public $open = false; //sirve para que el modal no se visualice al renderizar el componente
     public $actividades = [];
-    public $carreras = [];
-    public $turnos = [];
+    public $carreras;
+    public $turnos;
     public $ciclos;
-    public $asignaturas = [];
+    public $asignaturas;
 
     protected $rules = [
         'fecha' => 'required|date',
@@ -46,37 +46,53 @@ class CreateEvento extends Component
         $this->ciclos = collect();
         $this->asignaturas = collect();
 
-        // if ($this->actividades->isNotEmpty()) {
-        //     $this->actividad_id = $this->actividades->first()->id;
-        // }
-        // if ($this->carreras->isNotEmpty()) {
-        //     $this->carrera_id = $this->carreras->first()->id;
-        //     //dd($this->carrera_id);
-        // }
+        if (count($this->turnos) > 0) {
+            $this->turno_id = $this->turnos->first()->id;
+        }
+
+        if (count($this->carreras) > 0) {
+            $this->carrera_id = $this->carreras->first()->id;
+        }
     }
 
-   
+
     public function updating($property, $value)
     {
         if ($property == 'carrera_id') {
-            $this->reset(['asignaturas', 'asignatura_id']);
-            $this->ciclos = Asignatura::distinct()->pluck('ciclo')->toArray();
+            $this->reset(['ciclos', 'selectedCiclo', 'asignaturas', 'asignatura_id']);
         }
+
         if ($property == 'selectedCiclo') {
-            $this->reset(['asignatura_id']);
-            //$this->asignatura_id = null;
-            $this->asignaturas = Asignatura::where('carrera_id', $this->carrera_id)
-                ->where('ciclo', $value)->get();
+            $this->reset(['asignaturas', 'asignatura_id']);
         }
     }
-    
-    public function updated($property, $value)
+
+    public function updatedCarreraId($value)
     {
-        if ($property == 'carrera_id') {
-            $this->selectedCiclo = $this->ciclos[0] ?? null;
+        $ciclos = Asignatura::where('carrera_id', $value)
+            ->select('ciclo')
+            ->distinct()
+            ->get()
+            ->pluck('ciclo');
+
+        $this->ciclos = collect($ciclos);
+
+        if ($this->ciclos->isNotEmpty()) {
+            $this->selectedCiclo = $this->ciclos->first();
+            $this->updatedSelectedCiclo($this->selectedCiclo);
         }
-        if ($property == 'selectedCiclo') {
-            $this->asignatura_id = $this->asignaturas[0]->id ?? null;
+    }
+
+    public function updatedSelectedCiclo($value)
+    {
+        $asignaturas = Asignatura::where('carrera_id', $this->carrera_id)
+            ->where('ciclo', $value)
+            ->get();
+
+        $this->asignaturas = collect($asignaturas);
+
+        if ($this->asignaturas->isNotEmpty()) {
+            $this->asignatura_id = $this->asignaturas->first()->id;
         }
     }
 
