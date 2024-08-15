@@ -13,29 +13,42 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Calendario') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('asignaturas') }}" :active="request()->routeIs('asignaturas')">
-                        {{ __('Asignaturas') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('eventos') }}" :active="request()->routeIs('eventos')">
-                        {{ __('Eventos') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('equivalencias') }}" :active="request()->routeIs('equivalencias')">
-                        {{ __('Equivalencias') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('carreras') }}" :active="request()->routeIs('carreras')">
-                        {{ __('Carreras') }}
-                    </x-nav-link>
-                </div>
+
+                @can('eventos')
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link href="{{ route('eventos') }}" :active="request()->routeIs('eventos')">
+                            {{ __('Eventos') }}
+                        </x-nav-link>
+                    </div>
+                @endcan
+
+                @can('asignaturas')
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link href="{{ route('asignaturas') }}" :active="request()->routeIs('asignaturas')">
+                            {{ __('Asignaturas') }}
+                        </x-nav-link>
+                    </div>
+                @endcan
+
+                @can('equivalencias')
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link href="{{ route('equivalencias') }}" :active="request()->routeIs('equivalencias')">
+                            {{ __('Equivalencias') }}
+                        </x-nav-link>
+                    </div>
+                @endcan
+
+                @can('carreras')
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link href="{{ route('carreras') }}" :active="request()->routeIs('carreras')">
+                            {{ __('Carreras') }}
+                        </x-nav-link>
+                    </div>
+                @endcan
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">

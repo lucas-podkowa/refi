@@ -20,10 +20,10 @@ Route::get('/', [CalendarController::class, 'index'])->name('welcome');
 // });
 //--------------
 
-Route::get('asignatura', ShowAsignatura::class)->name('asignaturas');
-Route::get('evento', ShowEvento::class)->name('eventos');
-Route::get('carrera', ShowCarrera::class)->name('carreras');
-Route::get('equivalencia', ShowEquivalencia::class)->name('equivalencias');
+Route::get('asignatura', ShowAsignatura::class)->middleware('can:asignaturas')->name('asignaturas');
+Route::get('evento', ShowEvento::class)->middleware('can:eventos')->name('eventos');
+Route::get('carrera', ShowCarrera::class)->middleware('can:carreras')->name('carreras');
+Route::get('equivalencia', ShowEquivalencia::class)->middleware('can:equivalencias')->name('equivalencias');
 
 
 
@@ -47,7 +47,6 @@ Route::get('equivalencia', ShowEquivalencia::class)->name('equivalencias');
 // Route::controller(RegistroController::class)->group(function () {
 //     Route::get('registros', 'index');
 // });
-
 
 
 
