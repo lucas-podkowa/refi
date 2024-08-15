@@ -14,10 +14,10 @@ class CalendarController extends Controller
         foreach ($eventos as $evento) {
             $color = null;
             switch ($evento->actividad->codigo) {
-                case 'Final':
+                case 'EF':
                     $color = '#ff0000';
                     break;
-                case 'Parcial':
+                case 'EP':
                     $color = '#ffaa00';
                     break;
                 default:
@@ -34,5 +34,19 @@ class CalendarController extends Controller
         }
 
         return view('welcome', ['etiquetas' => $etiquetas]);
+    }
+
+    public function getEventsByDate(Request $request)
+    {
+        // Valida la fecha
+        $request->validate([
+            'fecha' => 'required|date',
+        ]);
+
+        // Obtén los eventos que coincidan con la fecha seleccionada
+        $eventos = Evento::whereDate('fecha', $request->fecha)->get();
+
+        // Devuelve los eventos como respuesta JSON
+        return response()->json($eventos);
     }
 }

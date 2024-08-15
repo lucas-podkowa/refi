@@ -15,6 +15,8 @@ use App\Models\Evento;
 //calendar route
 
 Route::get('/', [CalendarController::class, 'index'])->name('welcome');
+Route::get('/get-events-by-date', [CalendarController::class, 'getEventsByDate']);
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
