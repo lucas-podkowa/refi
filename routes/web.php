@@ -25,7 +25,7 @@ Route::get('/get-events-by-date', [CalendarController::class, 'getEventsByDate']
 Route::get('asignatura', ShowAsignatura::class)->middleware('can:asignaturas')->name('asignaturas');
 Route::get('evento', ShowEvento::class)->middleware('can:eventos')->name('eventos');
 Route::get('carrera', ShowCarrera::class)->middleware('can:carreras')->name('carreras');
-Route::get('equivalencia', ShowEquivalencia::class)->middleware('can:equivalencias')->name('equivalencias');
+Route::get('dictados_comunes', ShowEquivalencia::class)->middleware('can:dictadosComunes')->name('dictadosComunes');
 
 
 

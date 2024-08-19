@@ -103,20 +103,20 @@ class CreateEvento extends Component
         $this->validate();
 
 
-        // Obtener las equivalencias de la asignatura y luego añadir la propia asignatura al array de equivalencias
+        // Obtener las Dictados Comunes de la asignatura y luego añadir la propia asignatura al array de dictados comunes
         $asignatura = Asignatura::find($this->asignatura_id);
-        $directas = $asignatura->equivalencias->pluck('id')->toArray();
-        $inversas = $asignatura->equivalenciasInversas->pluck('id')->toArray();
-        $equivalencias_id = array_unique(array_merge($directas, $inversas));
-        //$equivalencias = Asignatura::whereIn('id', $equivalentesIds)->get();
+        $directas = $asignatura->dictadosComunes->pluck('id')->toArray();
+        $inversas = $asignatura->dictadosComunesInversos->pluck('id')->toArray();
+        $dictadosComunes_id = array_unique(array_merge($directas, $inversas));
+        
 
-        // Comprobar si existe un evento en la misma fecha para la asignatura o sus equivalencias
+        // Comprobar si existe un evento en la misma fecha para la asignatura o sus dictados comunes
         $eventoFecha = Evento::where('fecha', Carbon::parse($this->fecha))
-            ->whereIn('asignatura_id', $equivalencias_id)
+            ->whereIn('asignatura_id', $dictadosComunes_id)
             ->first();
 
         if ($eventoFecha) {
-            $this->dispatch('oops', message: 'Existen equivalencias');
+            $this->dispatch('oops', message: 'Existen Dictados Comunes');
             return;
         }
 

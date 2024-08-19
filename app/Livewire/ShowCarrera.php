@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Carrera;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ShowCarrera extends Component

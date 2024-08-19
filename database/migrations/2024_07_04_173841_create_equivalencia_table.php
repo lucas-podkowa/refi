@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equivalencia', function (Blueprint $table) {
+        Schema::create('dictado_comun', function (Blueprint $table) {
             $table->foreignId('asignatura_1')->constrained('asignatura');
             $table->foreignId('asignatura_2')->constrained('asignatura');
             $table->timestamps();

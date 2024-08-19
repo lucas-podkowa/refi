@@ -19,7 +19,7 @@ class ShowEquivalencia extends Component
     public $carreras, $filtroCarrera = '';
     public $dictados, $filtroDictado = '';
     public $ciclos = [], $filtroAño = '';
-    public $equivalencias;
+    public $dictadosComunes;
     public $asignaturaEdit_id;
     public $asignaturaEdit = [];
 
@@ -93,7 +93,7 @@ class ShowEquivalencia extends Component
     // public function selectAsignatura($id)
     // {
     //     $this->selectedAsignatura = Asignatura::find($id);
-    //     $this->equivalentes = $this->selectedAsignatura->equivalencias;
+    //     $this->equivalentes = $this->selectedAsignatura->dictadosComunes;
 
     //     $equivalentesIds = $this->equivalentes->pluck('asignatura_id')->toArray();
     //     $this->noEquivalentes = Asignatura::whereNotIn('asignatura_id', $equivalentesIds)
@@ -110,8 +110,8 @@ class ShowEquivalencia extends Component
         // Obtener IDs de las asignaturas equivalentes
         $this->selectedAsignatura = Asignatura::find($id);
 
-        $directas = $this->selectedAsignatura->equivalencias->pluck('id')->toArray();
-        $inversas = $this->selectedAsignatura->equivalenciasInversas->pluck('id')->toArray();
+        $directas = $this->selectedAsignatura->dictadosComunes->pluck('id')->toArray();
+        $inversas = $this->selectedAsignatura->dictadosComunesInversos->pluck('id')->toArray();
 
         $equivalentesIds = array_unique(array_merge($directas, $inversas));
         $this->equivalentes = Asignatura::whereIn('id', $equivalentesIds)->get()->toArray();

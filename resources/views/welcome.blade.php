@@ -1031,8 +1031,8 @@
 
             });
 
-            //$('.fc-event').css('font-size', '20px');
-            //$('.fc-event').css('border-radius', '10px');
+            $('.fc-event').css('font-size', '20px');
+            $('.fc-event').css('border-radius', '10px');
             //$('.fc').css('background-color', '#a8ccee');
         });
     </script>

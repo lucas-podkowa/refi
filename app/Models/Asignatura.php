@@ -33,12 +33,12 @@ class Asignatura extends Model
         return $this->belongsTo(Dictado::class, 'dictado_id', 'id');
     }
 
-    public function equivalencias()
+    public function dictadosComunes()
     {
         return $this->belongsToMany(Asignatura::class, 'equivalencia', 'asignatura_1', 'asignatura_2');
     }
 
-    public function equivalenciasInversas()
+    public function dictadosComunesInversos()
     {
         return $this->belongsToMany(Asignatura::class, 'equivalencia', 'asignatura_2', 'asignatura_1');
     }

@@ -358,7 +358,7 @@
 
                         </tbody>
                     </table>
-                    @if (count($equivalencias) > 0)
+                    @if (count($dictadosComunes) > 0)
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-blue-100">
 
@@ -370,12 +370,12 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($equivalencias as $eq)
+                                @foreach ($dictadosComunes as $dc)
                                     <tr>
                                         <td class="px-4 py-1">
                                             <div class="text-sm text-gray-900">
-                                                {{ $eq->nombre }} ({{ $eq->codigo }} -
-                                                {{ $eq->carrera->nombre }})
+                                                {{ $dc->nombre }} ({{ $dc->codigo }} -
+                                                {{ $dc->carrera->nombre }})
                                             </div>
                                         </td>
                                     </tr>

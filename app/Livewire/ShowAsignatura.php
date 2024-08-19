@@ -21,8 +21,8 @@ class ShowAsignatura extends Component
     public $carreras, $filtroCarrera = '';
     public $dictados, $filtroDictado = '';
     public $ciclos = [], $filtroAño = '';
-    public $equivalencias;
-    public $equivalencias_id;
+    public $dictadosComunes;
+    public $dictadosComunes_id;
     public $eventos_asignatura = [];
     public $asignatura_selected = null;
     public $asignaturaEdit_id;
@@ -96,13 +96,13 @@ class ShowAsignatura extends Component
         $this->asignatura_selected = Asignatura::find($id);
 
 
-        $directas = $this->asignatura_selected->equivalencias->pluck('id')->toArray();
-        $inversas = $this->asignatura_selected->equivalenciasInversas->pluck('id')->toArray();
-        $this->equivalencias_id = array_unique(array_merge($directas, $inversas, [$id]));
+        $directas = $this->asignatura_selected->dictadosComunes->pluck('id')->toArray();
+        $inversas = $this->asignatura_selected->dictadosComunesInversos->pluck('id')->toArray();
+        $this->dictadosComunes_id = array_unique(array_merge($directas, $inversas, [$id]));
 
-        $this->equivalencias = Asignatura::whereIn('id', $this->equivalencias_id)->get();
-        //dd($this->equivalencias);
-        $this->eventos_asignatura = Evento::whereIn('asignatura_id', $this->equivalencias->pluck('id')->toArray())
+        $this->dictadosComunes = Asignatura::whereIn('id', $this->dictadosComunes_id)->get();
+        //dd($this->dictadosComunes);
+        $this->eventos_asignatura = Evento::whereIn('asignatura_id', $this->dictadosComunes->pluck('id')->toArray())
             ->where('fecha', '>=', Carbon::today())
             ->get();
 

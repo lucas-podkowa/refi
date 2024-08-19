@@ -188,7 +188,7 @@
 
             <x-slot name="title">
                 @if ($asignaturaEdit)
-                    Editando equivalencias de {{ $asignaturaEdit['codigo'] }} -
+                    Editando Dictados Comunes de {{ $asignaturaEdit['codigo'] }} -
                     {{ $asignaturaEdit['nombre'] }}
                 @endif
             </x-slot>

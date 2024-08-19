@@ -33,10 +33,10 @@
                     </div>
                 @endcan
 
-                @can('equivalencias')
+                @can('dictadosComunes')
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link href="{{ route('equivalencias') }}" :active="request()->routeIs('equivalencias')">
-                            {{ __('Equivalencias') }}
+                        <x-nav-link href="{{ route('dictadosComunes') }}" :active="request()->routeIs('dictadosComunes')">
+                            {{ __('Dictado Comun') }}
                         </x-nav-link>
                     </div>
                 @endcan

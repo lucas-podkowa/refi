@@ -16,7 +16,7 @@ class EquivalenciaSeeder extends Seeder
     {
         
         // Definir las relaciones actuales
-        $equivalencias = [
+        $dictados_comunes = [
             ['asignatura_1' => 1, 'asignatura_2' => 25],
             ['asignatura_1' => 1, 'asignatura_2' => 49],
             ['asignatura_1' => 1, 'asignatura_2' => 71],
@@ -78,20 +78,20 @@ class EquivalenciaSeeder extends Seeder
             ['asignatura_1' => 38, 'asignatura_2' => 131]
         ];
 
-        // Crear una estructura para almacenar las equivalencias por asignatura_1
-        $equivalenciasPorAsignatura = [];
-        foreach ($equivalencias as $equivalencia) {
-            $asignatura1 = $equivalencia['asignatura_1'];
-            $asignatura2 = $equivalencia['asignatura_2'];
-            if (!isset($equivalenciasPorAsignatura[$asignatura1])) {
-                $equivalenciasPorAsignatura[$asignatura1] = [];
+        // Crear una estructura para almacenar los dictadosComunes por asignatura_1
+        $dcPorAsignatura = [];
+        foreach ($dictados_comunes as $dc) {
+            $asignatura1 = $dc['asignatura_1'];
+            $asignatura2 = $dc['asignatura_2'];
+            if (!isset($dcPorAsignatura[$asignatura1])) {
+                $dcPorAsignatura[$asignatura1] = [];
             }
-            $equivalenciasPorAsignatura[$asignatura1][] = $asignatura2;
+            $dcPorAsignatura[$asignatura1][] = $asignatura2;
         }
 
         // Generar todas las combinaciones transitivas
         $transitivas = [];
-        foreach ($equivalenciasPorAsignatura as $asignatura1 => $asignaturas2) {
+        foreach ($dcPorAsignatura as $asignatura1 => $asignaturas2) {
             $count = count($asignaturas2);
             for ($i = 0; $i < $count; $i++) {
                 for ($j = $i + 1; $j < $count; $j++) {
@@ -102,11 +102,11 @@ class EquivalenciaSeeder extends Seeder
         }
 
         // Combinar con las relaciones originales y eliminar duplicados
-        $allEquivalencias = array_merge($equivalencias, $transitivas);
-        $allEquivalencias = array_map("unserialize", array_unique(array_map("serialize", $allEquivalencias)));
+        $allDC = array_merge($dictados_comunes, $transitivas);
+        $allDC = array_map("unserialize", array_unique(array_map("serialize", $allDC)));
 
         // Insertar en la base de datos
-        DB::table('equivalencia')->insert($allEquivalencias);
+        DB::table('equivalencia')->insert($allDC);
 
 
 

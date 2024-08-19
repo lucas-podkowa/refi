@@ -22,7 +22,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'asignaturas'])->assignRole($admin);;
         Permission::create(['name' => 'eventos'])->syncRoles([$admin, $docente]);
         Permission::create(['name' => 'carreras'])->assignRole($admin);
-        Permission::create(['name' => 'equivalencias'])->assignRole($admin);
+        Permission::create(['name' => 'dictadosComunes'])->assignRole($admin);
 
         User::factory()->create([
             'name' => 'Usuario Docente',
