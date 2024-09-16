@@ -187,6 +187,37 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
+        @can('eventos')
+        <div class="pt-2 pb-3 space-y-1">
+                <x-nav-link href="{{ route('eventos') }}" :active="request()->routeIs('eventos')">
+                    {{ __('Eventos') }}
+                </x-nav-link>
+            </div>
+        @endcan
+
+        @can('asignaturas')
+        <div class="pt-2 pb-3 space-y-1">
+                <x-nav-link href="{{ route('asignaturas') }}" :active="request()->routeIs('asignaturas')">
+                    {{ __('Asignaturas') }}
+                </x-nav-link>
+            </div>
+        @endcan
+
+        @can('dictadosComunes')
+        <div class="pt-2 pb-3 space-y-1">
+                <x-nav-link href="{{ route('dictadosComunes') }}" :active="request()->routeIs('dictadosComunes')">
+                    {{ __('Dictado Comun') }}
+                </x-nav-link>
+            </div>
+        @endcan
+
+        @can('carreras')
+        <div class="pt-2 pb-3 space-y-1">
+                <x-nav-link href="{{ route('carreras') }}" :active="request()->routeIs('carreras')">
+                    {{ __('Carreras') }}
+                </x-nav-link>
+            </div>
+        @endcan
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">

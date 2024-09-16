@@ -18,7 +18,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
 
 
 
@@ -53,7 +55,13 @@
 
         body {
             margin: 0;
-            line-height: inherit
+            line-height: inherit;
+            background: rgb(238, 238, 238);
+            background: radial-gradient(circle, rgba(238, 238, 238, 0.15) 0%, rgba(48, 112, 187, 0.5) 85%, rgba(42, 105, 184, 1) 100%);
+
+            /* background: rgb(48,112,187);
+            background: radial-gradient(circle, rgba(48,112,187,0.7) 0%, rgba(48,112,187,0.3) 90%, rgba(42,105,184,0.05) 100%); */
+
         }
 
         hr {
@@ -913,74 +921,89 @@
     </style>
 </head>
 
-<body class="font-sans antialiased dark:bg-black dark:text-white/50">
-    <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-        <img id="background" class="absolute -left-20 top-0 max-w-[877px]"
-            src="https://laravel.com/assets/img/welcome/background.svg" />
-        <div
-            class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
-            <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                <header class="grid items-center gap-2 py-10">
-                    @if (Route::has('login'))
-                        <nav class="-mx-3 flex flex-1 justify-end">
+<body class="font-sans antialiased">
+    <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
+        <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
+            <header class="grid items-center gap-2 py-10">
+                @if (Route::has('login'))
+                    <nav class="-mx-3 flex flex-1 justify-end">
 
 
-                            @auth {{-- si esta autenticado nos lleva al calendario editable --}}
-                                <a href="{{ url('/dashboard') }}"
+                        @auth {{-- si esta autenticado nos lleva al calendario editable --}}
+                            <a href="{{ url('/dashboard') }}"
+                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                Panel de Control
+                            </a>
+                        @else
+                            {{-- de lo contrario nos lleva al calendario no editable --}}
+                            <a href="{{ route('login') }}"
+                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                Iniciar Sesión
+                            </a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}"
                                     class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                    Panel de Control
+                                    Registrarse
                                 </a>
-                            @else
-                                {{-- de lo contrario nos lleva al calendario no editable --}}
-                                <a href="{{ route('login') }}"
-                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                    Iniciar Sesión
-                                </a>
+                            @endif
+                        @endauth
+                    </nav>
+                @endif
+            </header>
 
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}"
-                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                        Registrarse
-                                    </a>
-                                @endif
-                            @endauth
-                        </nav>
-                    @endif
-                </header>
+            <main class="mt-2">
+                <div class="flex">
+                    <div id="calendar"> </div>
+                </div>
 
-                <main class="mt-2">
-                    <div class="flex">
-                        <div id="calendar"> </div>
-                    </div>
-
-                    <div class="modal fade" id="eventsModal" tabindex="-1" role="dialog"
-                        aria-labelledby="eventsModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="eventsModalLabel">Eventos del día</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- Aquí se mostrarán los eventos -->
-                                    <ul id="eventsList"></ul>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-dismiss="modal">Cerrar</button>
-                                </div>
+                {{-- <div class="modal fade" id="eventsModal" tabindex="-1" role="dialog"
+                    aria-labelledby="eventsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="eventsModalLabel">Eventos del día</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Aquí se mostrarán los eventos -->
+                                <ul id="eventsList"></ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
                     </div>
+                </div> --}}
 
-                </main>
+                <div class="modal fade" id="eventsModal" tabindex="-1" role="dialog" aria-labelledby="eventsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="eventsModalLabel">Detalles del Evento</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Aquí se mostrarán los detalles del evento -->
+                                <ul id="eventsList"></ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
 
-                <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-                    Registro de Exámenes Facultad de Ingeniería
-                </footer>
-            </div>
+            </main>
+
+            <footer class="py-16 text-center text-black dark:text-white/70">
+                Registro de Exámenes Facultad de Ingeniería
+            </footer>
         </div>
     </div>
 
@@ -995,45 +1018,69 @@
                     right: 'next'
                 },
                 events: etiquetas,
-                selectable: true,
-                selectHelper: true,
-                select: function(start) {
-                    var selectedDate = moment(start).format('YYYY-MM-DD');
-                    // Realiza una solicitud AJAX a routes/web enviando la fecha seleccionada
-                    $.ajax({
-                        url: '/get-events-by-date', // ruta que va a manejar la solicitud
-                        type: 'GET',
-                        data: {
-                            fecha: selectedDate
-                        },
-                        success: function(response) {
 
-                            // Limpia la lista anterior de eventos
-                            $('#eventsList').empty();
+                eventClick: function(event, jsEvent, view) {
+                // Aquí puedes manejar el clic en un evento específico
+                $('#eventsList').empty();  // Limpiar el contenido anterior del modal
 
-                            // Verifica si hay eventos
-                            if (response.length > 0) {
-                                // Itera sobre los eventos y los añade a la lista
-                                response.forEach(function(event) {
-                                    
-                                     $('#eventsList').append('<li>' + event.fecha +' - ' + event.observacion + '</li>');
-                                });
+                // Agregar detalles del evento al modal
+                $('#eventsList').append('<li><strong>Asignatura:</strong> ' + event.title + '</li>');
+                $('#eventsList').append('<li><strong>Responsable:</strong> ' + event.responsable + '</li>');
+                $('#eventsList').append('<li><strong>Fecha:</strong> ' + event.start.format('YYYY-MM-DD') + '</li>');
+                $('#eventsList').append('<li><strong>Observación:</strong> ' + event.observacion + '</li>');
+                
 
-                                $('#eventsModal').modal('show');
-                            }
+                // Mostrar el modal
+                $('#eventsModal').modal('show');
+            },
 
-                        },
-                        error: function(error) {
-                            console.error("Error al obtener los eventos:", error);
-                        }
-                    });
-                }
+            // Estilos personalizados para los eventos
+            eventRender: function(event, element) {
+                element.css('font-size', '20px');
+                element.css('border-radius', '10px');
+            }
+
+                //selectable: true,
+                //selectHelper: true,
+                // select: function(start) {
+                //     var selectedDate = moment(start).format('YYYY-MM-DD');
+                //     // Realiza una solicitud AJAX a routes/web enviando la fecha seleccionada
+                //     $.ajax({
+                //         url: '/get-events-by-date', // ruta que va a manejar la solicitud
+                //         type: 'GET',
+                //         data: {
+                //             fecha: selectedDate
+                //         },
+                //         success: function(response) {
+
+                //             // Limpia la lista anterior de eventos
+                //             $('#eventsList').empty();
+
+                //             // Verifica si hay eventos
+                //             if (response.length > 0) {
+                //                 // Itera sobre los eventos y los añade a la lista
+                //                 response.forEach(function(event) {
+
+                //                     $('#eventsList').append('<li>' + event.fecha +
+                //                         ' - ' + event.observacion + '</li>');
+                //                 });
+
+                //                 $('#eventsModal').modal('show');
+                //             }
+
+                //         },
+                //         error: function(error) {
+                //             console.error("Error al obtener los eventos:", error);
+                //         }
+                //     });
+                // }
+
+
 
             });
 
             $('.fc-event').css('font-size', '20px');
             $('.fc-event').css('border-radius', '10px');
-            //$('.fc').css('background-color', '#a8ccee');
         });
     </script>
 

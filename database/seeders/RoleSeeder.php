@@ -18,15 +18,16 @@ class RoleSeeder extends Seeder
         $admin = Role::create(['name' => 'Administrador']);
         $docente = Role::create(['name' => 'Docente']);
         $visitante = Role::create(['name' => 'Visitante']);
+        $funcional = Role::create(['name' => 'Funcional']);
 
-        Permission::create(['name' => 'asignaturas'])->assignRole($admin);;
+        Permission::create(['name' => 'asignaturas'])->syncRoles($admin, $funcional);
         Permission::create(['name' => 'eventos'])->syncRoles([$admin, $docente]);
-        Permission::create(['name' => 'carreras'])->assignRole($admin);
-        Permission::create(['name' => 'dictadosComunes'])->assignRole($admin);
+        Permission::create(['name' => 'carreras'])->syncRoles($admin, $funcional);
+        Permission::create(['name' => 'dictadosComunes'])->syncRoles($admin, $funcional);
 
         User::factory()->create([
             'name' => 'Usuario Docente',
-            'email' => 'profe@profe.com',
+            'email' => 'docente@mail.com',
             'password' => bcrypt('hh1y32gg')
         ])->assignRole('Docente');
 
@@ -35,6 +36,12 @@ class RoleSeeder extends Seeder
             'email' => 'mail@mail.com',
             'password' => bcrypt('hh1y32gg')
         ])->assignRole('Administrador');
+
+        User::factory()->create([
+            'name' => 'Usuario Funcional',
+            'email' => 'funcional@mail.com',
+            'password' => bcrypt('hh1y32gg')
+        ])->assignRole('Funcional');
 
     }
 }

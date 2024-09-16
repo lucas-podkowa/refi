@@ -11,7 +11,6 @@
         </div>
     </div>
 
-
     <script>
         $(document).ready(function() {
             var etiquetas = @json($etiquetas);

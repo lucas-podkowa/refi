@@ -26,10 +26,12 @@ class CalendarController extends Controller
             }
 
             $etiquetas[] = [
-                'title' => $evento->actividad->codigo . ' - ' . $evento->asignatura->codigo,
+                'title' => $evento->asignatura->nombre, //$evento->actividad->codigo . ' - ' . 
                 'start' => $evento->fecha,
                 'color' => $color,
-                'textColor' => '#ffffff'
+                'textColor' => '#ffffff',
+                'responsable'=>$evento->asignatura->responsable,
+                'observacion'=>$evento->observacion
             ];
         }
 

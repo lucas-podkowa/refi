@@ -130,7 +130,7 @@ class ShowEquivalencia extends Component
     {
         $asignatura = $this->buscarAsignatura($id, $this->noEquivalentes);
         if ($asignatura) {
-            $this->noEquivalentes = array_filter($this->noEquivalentes, fn ($item) => $item['id'] !== $id);
+            $this->noEquivalentes = array_filter($this->noEquivalentes, fn($item) => $item['id'] !== $id);
             $this->equivalentes[] = $asignatura;
         }
     }
@@ -140,7 +140,7 @@ class ShowEquivalencia extends Component
         $asignatura = $this->buscarAsignatura($id, $this->equivalentes);
 
         if ($asignatura) {
-            $this->equivalentes = array_filter($this->equivalentes, function ($item) use ($id){
+            $this->equivalentes = array_filter($this->equivalentes, function ($item) use ($id) {
                 return $item['id'] != $id;
             });
             $this->noEquivalentes[] = $asignatura;

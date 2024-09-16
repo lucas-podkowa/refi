@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RoleSeeder::class);
         $this->call(AsignaturaSeeder::class);
-        $this->call(EquivalenciaSeeder::class);
+        $this->call(DictadoComunSeeder::class);
 
  
     }

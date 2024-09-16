@@ -35,11 +35,11 @@ class Asignatura extends Model
 
     public function dictadosComunes()
     {
-        return $this->belongsToMany(Asignatura::class, 'equivalencia', 'asignatura_1', 'asignatura_2');
+        return $this->belongsToMany(Asignatura::class, 'dictado_comun', 'asignatura_1', 'asignatura_2');
     }
 
     public function dictadosComunesInversos()
     {
-        return $this->belongsToMany(Asignatura::class, 'equivalencia', 'asignatura_2', 'asignatura_1');
+        return $this->belongsToMany(Asignatura::class, 'dictado_comun', 'asignatura_2', 'asignatura_1');
     }
 }

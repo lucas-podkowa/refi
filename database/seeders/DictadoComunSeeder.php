@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 
-class EquivalenciaSeeder extends Seeder
+class DictadoComunSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -106,7 +105,7 @@ class EquivalenciaSeeder extends Seeder
         $allDC = array_map("unserialize", array_unique(array_map("serialize", $allDC)));
 
         // Insertar en la base de datos
-        DB::table('equivalencia')->insert($allDC);
+        DB::table('dictado_comun')->insert($allDC);
 
 
 
