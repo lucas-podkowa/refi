@@ -10,6 +10,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    
     <!-- for Calendar -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
     <link rel="stylesheet"
@@ -18,11 +19,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+    
+        <!-- for bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
-
-
 
     <!-- Styles -->
     <style>
@@ -919,10 +920,33 @@
             }
         }
     </style>
+
+    <style>
+        .personalizado {
+        background-color: aliceblue;
+        margin-top: 25vh;
+        background: linear-gradient(rgb(97, 179, 255), white);
+        box-shadow: 0px -10px 30px 5px whitesmoke;
+        border-radius: 1rem;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .personalizado:hover {
+        border-radius: 2rem;
+        box-shadow: 0px 20px 30px 5px black;
+        transform: scale(1.1);
+    }
+    #eventsModalLabel{
+        font-size: 1.5rem;
+        font-weight: 600;
+        text-align: center;
+    }
+    </style>
 </head>
 
 <body class="font-sans antialiased">
-    <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
+    <div
+        class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
         <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
             <header class="grid items-center gap-2 py-10">
                 @if (Route::has('login'))
@@ -957,47 +981,21 @@
                     <div id="calendar"> </div>
                 </div>
 
-                {{-- <div class="modal fade" id="eventsModal" tabindex="-1" role="dialog"
+                <div class="modal fade" id="eventsModal" tabindex="-1" role="dialog"
                     aria-labelledby="eventsModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="eventsModalLabel">Eventos del día</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <!-- Aquí se mostrarán los eventos -->
-                                <ul id="eventsList"></ul>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-
-                <div class="modal fade" id="eventsModal" tabindex="-1" role="dialog" aria-labelledby="eventsModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content personalizado">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="eventsModalLabel">Detalles del Evento</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
                             </div>
                             <div class="modal-body">
                                 <!-- Aquí se mostrarán los detalles del evento -->
                                 <ul id="eventsList"></ul>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            </div>
                         </div>
                     </div>
                 </div>
-                
+
 
             </main>
 
@@ -1020,62 +1018,29 @@
                 events: etiquetas,
 
                 eventClick: function(event, jsEvent, view) {
-                // Aquí puedes manejar el clic en un evento específico
-                $('#eventsList').empty();  // Limpiar el contenido anterior del modal
+                    // Limpiar el contenido anterior del modal
+                    $('#eventsList').empty(); 
 
-                // Agregar detalles del evento al modal
-                $('#eventsList').append('<li><strong>Asignatura:</strong> ' + event.title + '</li>');
-                $('#eventsList').append('<li><strong>Responsable:</strong> ' + event.responsable + '</li>');
-                $('#eventsList').append('<li><strong>Fecha:</strong> ' + event.start.format('YYYY-MM-DD') + '</li>');
-                $('#eventsList').append('<li><strong>Observación:</strong> ' + event.observacion + '</li>');
-                
-
-                // Mostrar el modal
-                $('#eventsModal').modal('show');
-            },
-
-            // Estilos personalizados para los eventos
-            eventRender: function(event, element) {
-                element.css('font-size', '20px');
-                element.css('border-radius', '10px');
-            }
-
-                //selectable: true,
-                //selectHelper: true,
-                // select: function(start) {
-                //     var selectedDate = moment(start).format('YYYY-MM-DD');
-                //     // Realiza una solicitud AJAX a routes/web enviando la fecha seleccionada
-                //     $.ajax({
-                //         url: '/get-events-by-date', // ruta que va a manejar la solicitud
-                //         type: 'GET',
-                //         data: {
-                //             fecha: selectedDate
-                //         },
-                //         success: function(response) {
-
-                //             // Limpia la lista anterior de eventos
-                //             $('#eventsList').empty();
-
-                //             // Verifica si hay eventos
-                //             if (response.length > 0) {
-                //                 // Itera sobre los eventos y los añade a la lista
-                //                 response.forEach(function(event) {
-
-                //                     $('#eventsList').append('<li>' + event.fecha +
-                //                         ' - ' + event.observacion + '</li>');
-                //                 });
-
-                //                 $('#eventsModal').modal('show');
-                //             }
-
-                //         },
-                //         error: function(error) {
-                //             console.error("Error al obtener los eventos:", error);
-                //         }
-                //     });
-                // }
+                    // Agregar detalles del evento al modal
+                    $('#eventsList').append('<li><strong>Asignatura:</strong> ' + event.title +
+                    '</li>');
+                    $('#eventsList').append('<li><strong>Responsable:</strong> ' + (event.responsable ?
+                        event.responsable : '-') + '</li>');
+                    $('#eventsList').append('<li><strong>Fecha:</strong> ' + event.start.format(
+                        'YYYY-MM-DD') + '</li>');
+                    $('#eventsList').append('<li><strong>Observación:</strong> ' + event.observacion +
+                        '</li>');
 
 
+                    // Mostrar el modal
+                    $('#eventsModal').modal('show');
+                },
+
+                // Estilos personalizados para los eventos
+                eventRender: function(event, element) {
+                    element.css('font-size', '20px');
+                    element.css('border-radius', '10px');
+                }
 
             });
 

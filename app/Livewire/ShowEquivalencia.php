@@ -129,8 +129,14 @@ class ShowEquivalencia extends Component
     public function moverAEquivalentes($id)
     {
         $asignatura = $this->buscarAsignatura($id, $this->noEquivalentes);
+
         if ($asignatura) {
-            $this->noEquivalentes = array_filter($this->noEquivalentes, fn($item) => $item['id'] !== $id);
+            $this->noEquivalentes = array_filter(
+                $this->noEquivalentes,
+                function ($item) use ($id) {
+                    return $item['id'] != $id;
+                }
+            );
             $this->equivalentes[] = $asignatura;
         }
     }
@@ -140,9 +146,12 @@ class ShowEquivalencia extends Component
         $asignatura = $this->buscarAsignatura($id, $this->equivalentes);
 
         if ($asignatura) {
-            $this->equivalentes = array_filter($this->equivalentes, function ($item) use ($id) {
-                return $item['id'] != $id;
-            });
+            $this->equivalentes = array_filter(
+                $this->equivalentes,
+                function ($item) use ($id) {
+                    return $item['id'] != $id;
+                }
+            );
             $this->noEquivalentes[] = $asignatura;
         }
     }
@@ -161,25 +170,29 @@ class ShowEquivalencia extends Component
 
     public function update()
     {
-        $this->validate([
-            'asignaturaEdit.nombre' => 'required|max:100',
-            'asignaturaEdit.codigo' => 'required|max:8',
-            'asignaturaEdit.ciclo' => 'required',
-            'asignaturaEdit.dictado_id' => 'required'
-        ]);
 
-        $asignatura = Asignatura::find($this->asignaturaEdit_id);
-        $asignatura->update([
-            'nombre' =>  $this->asignaturaEdit['nombre'],
-            'codigo' =>  $this->asignaturaEdit['codigo'],
-            'ciclo' =>  $this->asignaturaEdit['ciclo'],
-            'dictado_id' =>  $this->asignaturaEdit['dictado_id'],
-            'responsable' =>  $this->asignaturaEdit['responsable'],
-        ]);
+        printf( $this->equivalentes);
+        //dd( $this->noEquivalentes);
 
-        $this->reset(['open_edit', 'asignaturaEdit', 'nombre', 'codigo', 'ciclo', 'responsable', 'dictado_id']);
+        // $this->validate([
+        //     'asignaturaEdit.nombre' => 'required|max:100',
+        //     'asignaturaEdit.codigo' => 'required|max:8',
+        //     'asignaturaEdit.ciclo' => 'required',
+        //     'asignaturaEdit.dictado_id' => 'required'
+        // ]);
 
-        //emito el evento alert para que me muestre un mensaje
-        $this->dispatch('alert', message: 'Asignatura actualizada');
+        // $asignatura = Asignatura::find($this->asignaturaEdit_id);
+        // $asignatura->update([
+        //     'nombre' =>  $this->asignaturaEdit['nombre'],
+        //     'codigo' =>  $this->asignaturaEdit['codigo'],
+        //     'ciclo' =>  $this->asignaturaEdit['ciclo'],
+        //     'dictado_id' =>  $this->asignaturaEdit['dictado_id'],
+        //     'responsable' =>  $this->asignaturaEdit['responsable'],
+        // ]);
+
+        // $this->reset(['open_edit', 'asignaturaEdit', 'nombre', 'codigo', 'ciclo', 'responsable', 'dictado_id']);
+
+        // //emito el evento alert para que me muestre un mensaje
+        // $this->dispatch('alert', message: 'Asignatura actualizada');
     }
 }
