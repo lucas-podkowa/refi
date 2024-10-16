@@ -49,6 +49,14 @@
                     </div>
                 @endcan
 
+                @can('usuarios')
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link href="{{ route('usuarios') }}" :active="request()->routeIs('usuarios')">
+                            {{ __('Usuarios') }}
+                        </x-nav-link>
+                    </div>
+                @endcan
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -188,7 +196,7 @@
             </x-responsive-nav-link>
         </div>
         @can('eventos')
-        <div class="pt-2 pb-3 space-y-1">
+            <div class="pt-2 pb-3 space-y-1">
                 <x-nav-link href="{{ route('eventos') }}" :active="request()->routeIs('eventos')">
                     {{ __('Eventos') }}
                 </x-nav-link>
@@ -196,7 +204,7 @@
         @endcan
 
         @can('asignaturas')
-        <div class="pt-2 pb-3 space-y-1">
+            <div class="pt-2 pb-3 space-y-1">
                 <x-nav-link href="{{ route('asignaturas') }}" :active="request()->routeIs('asignaturas')">
                     {{ __('Asignaturas') }}
                 </x-nav-link>
@@ -204,7 +212,7 @@
         @endcan
 
         @can('dictadosComunes')
-        <div class="pt-2 pb-3 space-y-1">
+            <div class="pt-2 pb-3 space-y-1">
                 <x-nav-link href="{{ route('dictadosComunes') }}" :active="request()->routeIs('dictadosComunes')">
                     {{ __('Dictado Comun') }}
                 </x-nav-link>
@@ -212,9 +220,17 @@
         @endcan
 
         @can('carreras')
-        <div class="pt-2 pb-3 space-y-1">
+            <div class="pt-2 pb-3 space-y-1">
                 <x-nav-link href="{{ route('carreras') }}" :active="request()->routeIs('carreras')">
                     {{ __('Carreras') }}
+                </x-nav-link>
+            </div>
+        @endcan
+
+        @can('usuarios')
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link href="{{ route('usuarios') }}" :active="request()->routeIs('usuarios')">
+                    {{ __('Usuarios') }}
                 </x-nav-link>
             </div>
         @endcan

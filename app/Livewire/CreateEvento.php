@@ -108,7 +108,6 @@ class CreateEvento extends Component
         $directas = $asignatura->dictadosComunes->pluck('id')->toArray();
         $inversas = $asignatura->dictadosComunesInversos->pluck('id')->toArray();
         $dictadosComunes_id = array_unique(array_merge($directas, $inversas));
-        
 
         // Comprobar si existe un evento en la misma fecha para la asignatura o sus dictados comunes
         $eventoFecha = Evento::where('fecha', Carbon::parse($this->fecha))
@@ -116,22 +115,25 @@ class CreateEvento extends Component
             ->first();
 
         if ($eventoFecha) {
-            $this->dispatch('oops', message: 'Existen Dictados Comunes');
+            $this->dispatch('oops', message: 'Existen registros de Dictados Comúnes');
             return;
         }
 
 
-        // Comprobar si existe un evento en el mismo turno para otras asignaturas del mismo ciclo
+        // Comprobar si existe un evento en el mismo turno para otras asignaturas del mismo ciclo y carrera
         $ciclo = $asignatura->ciclo;
-        $eventoMismoCiclo = Evento::where('turno_id', $this->turno_id)
+        $carrera = $asignatura->carrera_id;
+
+        $eventoMismoCicloMismaCarrera = Evento::where('turno_id', $this->turno_id)
             ->where('fecha', Carbon::parse($this->fecha))
-            ->whereHas('asignatura', function ($query) use ($ciclo) {
-                $query->where('ciclo', $ciclo);
+            ->whereHas('asignatura', function ($query) use ($ciclo, $carrera) {
+                $query->where('ciclo', $ciclo)
+                    ->where('carrera_id', $carrera);  // Misma carrera
             })
             ->first();
 
-        if ($eventoMismoCiclo) {
-            $this->dispatch('oops', message: 'Existe otro evento del mismo año en este turno');
+        if ($eventoMismoCicloMismaCarrera) {
+            $this->dispatch('oops', message: 'Existe otro evento del mismo año y carrera en este turno');
             return;
         }
 

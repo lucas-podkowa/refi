@@ -147,14 +147,17 @@
                                 <td class="px-6 py-3 whitespace-nowrap text-sm font-medium">
 
                                     {{-- aqui esta el boton editar que dispara el metodo edit y este muestra el modal --}}
-                                    <a class="btn btn-blue-green px-2" wire:click="edit({{ $item->id }})">
+                                    <a class="btn btn-blue-green px-2" href="#"
+                                        wire:click="edit({{ $item->id }})">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a class="btn btn-blue-green" wire:click="detail({{ $item->id }})">
+                                    <a class="btn btn-blue-green" href="#"
+                                        wire:click="detail({{ $item->id }})">
                                         <i class="fas fa-eye"></i>
                                     </a>
 
                                 </td>
+
                             </tr>
                         @endforeach
 

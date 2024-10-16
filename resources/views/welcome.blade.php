@@ -10,7 +10,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    
+
     <!-- for Calendar -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
     <link rel="stylesheet"
@@ -19,11 +19,68 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
-    
-        <!-- for bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/locale/es.js"></script>
+
+
+    <!-- for bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
+
+    <style>
+        /* Agrega aquí el CSS personalizado del calendario */
+        .fc td {
+            border-width: 3px;
+            border-style: double;
+            border-color: #ffffff;
+        }
+
+        .fc-head {
+            background-color: #888;
+            border-style: none;
+            color: white;
+            font-size: 1.2rem;
+            text-shadow: 0px 0px 3px black
+        }
+
+        .fc-view-container {
+            box-shadow: 1pc 1pc 10px #888
+        }
+
+        .fc-center {
+            text-transform: capitalize;
+            color: white;
+            font-size: 1.5rem;
+            text-shadow: 0px 0px 3px black
+        }
+
+        .nav_superior {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav_superior .enlace {
+            color: #444;
+            font-size: 1.2rem;
+            padding: 0.5rem 1rem;
+            margin-right: 1rem;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            cursor: pointer;
+            background-color: transparent;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            box-shadow: 0px 0px 10px 10px #ccc;
+        }
+
+        .nav_superior .enlace:hover {
+            transition: all 0.5s ease-in-out;
+            box-shadow: 5px 5px 4px 4px #999;
+            /* box-shadow: 0px 0px 20px 20px #bbb; */
+            transform: scale(1.1);
+
+        }
+    </style>
 
     <!-- Styles -->
     <style>
@@ -57,12 +114,9 @@
         body {
             margin: 0;
             line-height: inherit;
-            background: rgb(238, 238, 238);
-            background: radial-gradient(circle, rgba(238, 238, 238, 0.15) 0%, rgba(48, 112, 187, 0.5) 85%, rgba(42, 105, 184, 1) 100%);
-
-            /* background: rgb(48,112,187);
-            background: radial-gradient(circle, rgba(48,112,187,0.7) 0%, rgba(48,112,187,0.3) 90%, rgba(42,105,184,0.05) 100%); */
-
+            background-image: url('{{ asset('/logos/fondo_lineas.jpg') }}');
+            /* background: rgb(175, 179, 182); */
+            /* background: linear-gradient(180deg, rgba(175, 179, 182, 1) 0%, rgba(255, 255, 255, 1) 100%); */
         }
 
         hr {
@@ -923,57 +977,63 @@
 
     <style>
         .personalizado {
-        background-color: aliceblue;
-        margin-top: 25vh;
-        background: linear-gradient(rgb(97, 179, 255), white);
-        box-shadow: 0px -10px 30px 5px whitesmoke;
-        border-radius: 1rem;
-        transition: all 0.5s ease-in-out;
-    }
+            background-color: aliceblue;
+            margin-top: 25vh;
+            background: linear-gradient(rgb(97, 179, 255), white);
+            box-shadow: 0px -10px 30px 5px whitesmoke;
+            border-radius: 1rem;
+            transition: all 0.5s ease-in-out;
+        }
 
-    .personalizado:hover {
-        border-radius: 2rem;
-        box-shadow: 0px 20px 30px 5px black;
-        transform: scale(1.1);
-    }
-    #eventsModalLabel{
-        font-size: 1.5rem;
-        font-weight: 600;
-        text-align: center;
-    }
+        .personalizado:hover {
+            border-radius: 2rem;
+            box-shadow: 0px 20px 30px 5px black;
+            transform: scale(1.1);
+        }
+
+        #eventsModalLabel {
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        body {}
     </style>
 </head>
 
 <body class="font-sans antialiased">
-    <div
-        class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
-        <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-            <header class="grid items-center gap-2 py-10">
-                @if (Route::has('login'))
-                    <nav class="-mx-3 flex flex-1 justify-end">
+    <div class="relative min-h-screen flex flex-col items-center selection:bg-[#FF2D20] selection:text-white">
+        <div class="fondo relative w-full max-w-2xl px-6 lg:max-w-7xl">
 
-
-                        @auth {{-- si esta autenticado nos lleva al calendario editable --}}
-                            <a href="{{ url('/dashboard') }}"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                Panel de Control
-                            </a>
-                        @else
-                            {{-- de lo contrario nos lleva al calendario no editable --}}
-                            <a href="{{ route('login') }}"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                Iniciar Sesión
-                            </a>
-
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}"
-                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                    Registrarse
+            <header class="nav_superior py-10">
+                <!-- Logo a la izquierda -->
+                <div class="flex-shrink-0">
+                    <img src="{{ asset('/logos/logo_50.png') }}" style="width: 300px; height: auto;" alt="Logo">
+                </div>
+                <div>
+                    @if (Route::has('login'))
+                        <!-- Enlaces a la derecha -->
+                        <nav class="flex ">
+                            @auth
+                                <a href="{{ url('/dashboard') }}"
+                                    class="rounded-md px-3 py-2 text-black transition hover:text-black/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#FF2D20]">
+                                    Panel de Control
                                 </a>
-                            @endif
-                        @endauth
-                    </nav>
-                @endif
+                            @else
+                                <a href="{{ route('login') }}" class="enlace">
+                                    Iniciar Sesión
+                                </a>
+
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}" class="enlace">
+                                        Registrarse
+                                    </a>
+                                @endif
+                            @endauth
+                        </nav>
+                    @endif
+                </div>
+
             </header>
 
             <main class="mt-2">
@@ -989,27 +1049,25 @@
                                 <h5 class="modal-title" id="eventsModalLabel">Detalles del Evento</h5>
                             </div>
                             <div class="modal-body">
-                                <!-- Aquí se mostrarán los detalles del evento -->
                                 <ul id="eventsList"></ul>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </main>
 
-            <footer class="py-16 text-center text-black dark:text-white/70">
-                Registro de Exámenes Facultad de Ingeniería
-            </footer>
         </div>
     </div>
+
+
+
 
     {{-- logica del calendario --}}
     <script>
         $(document).ready(function() {
             var etiquetas = @json($etiquetas);
             $('#calendar').fullCalendar({
+                locale: 'es',
                 header: {
                     left: 'prev, today',
                     center: 'title',
@@ -1019,17 +1077,23 @@
 
                 eventClick: function(event, jsEvent, view) {
                     // Limpiar el contenido anterior del modal
-                    $('#eventsList').empty(); 
+                    $('#eventsList').empty();
 
                     // Agregar detalles del evento al modal
-                    $('#eventsList').append('<li><strong>Asignatura:</strong> ' + event.title +
-                    '</li>');
+                    $('#eventsList').append('<li><strong>Asignatura:</strong> ' + event.asignatura +
+                        '</li>');
+                    $('#eventsList').append('<li><strong>Actividad:</strong> ' + event.actividad +
+                        '</li>');
+                    $('#eventsList').append('<li><strong>Carrera:</strong> ' + event.carrera +
+                        '</li>');
                     $('#eventsList').append('<li><strong>Responsable:</strong> ' + (event.responsable ?
                         event.responsable : '-') + '</li>');
                     $('#eventsList').append('<li><strong>Fecha:</strong> ' + event.start.format(
                         'YYYY-MM-DD') + '</li>');
                     $('#eventsList').append('<li><strong>Observación:</strong> ' + event.observacion +
                         '</li>');
+
+
 
 
                     // Mostrar el modal
@@ -1039,13 +1103,15 @@
                 // Estilos personalizados para los eventos
                 eventRender: function(event, element) {
                     element.css('font-size', '20px');
-                    element.css('border-radius', '10px');
+                    element.css('border-radius', '5px');
+                    element.css('padding-left', '5px');
+                    element.css({
+                        'white-space': 'normal',
+                        'word-wrap': 'break-word'
+                    });
+                    element.find('.fc-title').html(event.title.replace(/\n/g, '<br/>'));
                 }
-
             });
-
-            $('.fc-event').css('font-size', '20px');
-            $('.fc-event').css('border-radius', '10px');
         });
     </script>
 

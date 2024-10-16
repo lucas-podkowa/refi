@@ -17,13 +17,13 @@ class RoleSeeder extends Seeder
     {
         $admin = Role::create(['name' => 'Administrador']);
         $docente = Role::create(['name' => 'Docente']);
-        $visitante = Role::create(['name' => 'Visitante']);
         $funcional = Role::create(['name' => 'Funcional']);
 
         Permission::create(['name' => 'asignaturas'])->syncRoles($admin, $funcional);
         Permission::create(['name' => 'eventos'])->syncRoles([$admin, $docente]);
         Permission::create(['name' => 'carreras'])->syncRoles($admin, $funcional);
         Permission::create(['name' => 'dictadosComunes'])->syncRoles($admin, $funcional);
+        Permission::create(['name' => 'usuarios'])->syncRoles($admin);
 
         User::factory()->create([
             'name' => 'Usuario Docente',
@@ -42,6 +42,5 @@ class RoleSeeder extends Seeder
             'email' => 'funcional@mail.com',
             'password' => bcrypt('hh1y32gg')
         ])->assignRole('Funcional');
-
     }
 }

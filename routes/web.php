@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\DashboardController;
+use App\Livewire\Admin\ShowUsuario;
 use App\Livewire\ShowAsignatura;
 use App\Livewire\ShowCarrera;
 use App\Livewire\ShowEquivalencia;
@@ -14,6 +15,7 @@ Route::get('asignatura', ShowAsignatura::class)->middleware('can:asignaturas')->
 Route::get('evento', ShowEvento::class)->middleware('can:eventos')->name('eventos');
 Route::get('carrera', ShowCarrera::class)->middleware('can:carreras')->name('carreras');
 Route::get('dictados_comunes', ShowEquivalencia::class)->middleware('can:dictadosComunes')->name('dictadosComunes');
+Route::get('usuario', ShowUsuario::class)->middleware('can:usuarios')->name('usuarios');
 
 Route::get('/get-events-by-date', [CalendarController::class, 'getEventsByDate']);
 

@@ -170,29 +170,28 @@ class ShowEquivalencia extends Component
 
     public function update()
     {
-
-        printf( $this->equivalentes);
+        //printf( $this->equivalentes);
         //dd( $this->noEquivalentes);
 
-        // $this->validate([
-        //     'asignaturaEdit.nombre' => 'required|max:100',
-        //     'asignaturaEdit.codigo' => 'required|max:8',
-        //     'asignaturaEdit.ciclo' => 'required',
-        //     'asignaturaEdit.dictado_id' => 'required'
-        // ]);
+        $this->validate([
+            'asignaturaEdit.nombre' => 'required|max:100',
+            'asignaturaEdit.codigo' => 'required|max:8',
+            'asignaturaEdit.ciclo' => 'required',
+            'asignaturaEdit.dictado_id' => 'required'
+        ]);
 
-        // $asignatura = Asignatura::find($this->asignaturaEdit_id);
-        // $asignatura->update([
-        //     'nombre' =>  $this->asignaturaEdit['nombre'],
-        //     'codigo' =>  $this->asignaturaEdit['codigo'],
-        //     'ciclo' =>  $this->asignaturaEdit['ciclo'],
-        //     'dictado_id' =>  $this->asignaturaEdit['dictado_id'],
-        //     'responsable' =>  $this->asignaturaEdit['responsable'],
-        // ]);
+        $asignatura = Asignatura::find($this->asignaturaEdit_id);
+        $asignatura->update([
+            'nombre' =>  $this->asignaturaEdit['nombre'],
+            'codigo' =>  $this->asignaturaEdit['codigo'],
+            'ciclo' =>  $this->asignaturaEdit['ciclo'],
+            'dictado_id' =>  $this->asignaturaEdit['dictado_id'],
+            'responsable' =>  $this->asignaturaEdit['responsable'],
+        ]);
 
-        // $this->reset(['open_edit', 'asignaturaEdit', 'nombre', 'codigo', 'ciclo', 'responsable', 'dictado_id']);
+        $this->reset(['open_edit', 'asignaturaEdit', 'nombre', 'codigo', 'ciclo', 'responsable', 'dictado_id']);
 
-        // //emito el evento alert para que me muestre un mensaje
-        // $this->dispatch('alert', message: 'Asignatura actualizada');
+        //emito el evento alert para que me muestre un mensaje
+        $this->dispatch('alert', message: 'Asignatura actualizada');
     }
 }
