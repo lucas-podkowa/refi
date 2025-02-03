@@ -1,7 +1,5 @@
 <div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
-
         <x-table>
 
             {{-- ------------------- Filtros de la tabla ------------------------------------------------------- --}}
@@ -151,70 +149,71 @@
 
         {{-- ------------------------  DIALOG MODAL visualizado al precionar el boton editar --------------------------- --}}
 
-        <form wire:submit.prevent="update">
-            <x-dialog-modal wire:model="open_edit">
 
-                <x-slot name="title">
-                    @if ($asignaturaEdit)
-                        Editando Dictados Comunes de {{ $asignaturaEdit['codigo'] }} -
-                        {{ $asignaturaEdit['nombre'] }}
-                    @endif
-                </x-slot>
+        <x-dialog-modal wire:model="open_edit">
 
-                <x-slot name="content">
-                    <div>
-                        @if ($selectedAsignatura)
-                            <h3>Asignatura seleccionada: {{ $selectedAsignatura->nombre }}</h3>
-                            <div style="display: flex;">
-                                <div style="margin-right: 20px; max-height: 50vh; overflow-y: auto;">
-                                    <h4>Dictado Comun</h4>
-                                    <ul>
-                                        @foreach ($equivalentes as $equivalente)
-                                            <li class="equivalente-item">
-                                                <span>{{ $equivalente['nombre'] }}
-                                                    ({{ $equivalente['codigo'] }})
-                                                </span>
-                                                <button wire:click="moverANoEquivalentes('{{ $equivalente['id'] }}')"
-                                                    class="button-mover button-mover-no-equivalentes">></button>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+            <x-slot name="title">
+                @if ($asignaturaEdit)
+                    Editando Dictados Comunes de {{ $asignaturaEdit['codigo'] }} -
+                    {{ $asignaturaEdit['nombre'] }}
+                @endif
+            </x-slot>
 
-                                <div style="max-height: 50vh; overflow-y: auto;">
-                                    <h4>Otras Asignaturas</h4>
-                                    <ul>
-                                        @foreach ($noEquivalentes as $noEquivalente)
-                                            <li class="equivalente-item">
-                                                <button wire:click="moverAEquivalentes('{{ $noEquivalente['id'] }}')"
-                                                    class="button-mover button-mover-equivalentes">
-                                                    < </button>
-                                                        <span>{{ $noEquivalente['nombre'] }}
-                                                            ({{ $noEquivalente['codigo'] }})
-                                                        </span>
-
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+            <x-slot name="content">
+                <div>
+                    @if ($selectedAsignatura)
+                        <h3>Asignatura seleccionada: {{ $selectedAsignatura->nombre }}</h3>
+                        <div style="display: flex;">
+                            <div style="margin-right: 20px; max-height: 50vh; overflow-y: auto;">
+                                <h4>Dictado Comun</h4>
+                                <ul>
+                                    @foreach ($equivalentes as $equivalente)
+                                        <li class="equivalente-item">
+                                            <span>{{ $equivalente['nombre'] }}
+                                                ({{ $equivalente['codigo'] }})
+                                            </span>
+                                            <button type="button"
+                                                wire:click="moverANoEquivalentes('{{ $equivalente['id'] }}')"
+                                                class="button-mover button-mover-no-equivalentes">></button>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
-                        @endif
-                    </div>
 
-                </x-slot>
+                            <div style="max-height: 50vh; overflow-y: auto;">
+                                <h4>Otras Asignaturas</h4>
+                                <ul>
+                                    @foreach ($noEquivalentes as $noEquivalente)
+                                        <li class="equivalente-item">
+                                            <button type="button"
+                                                wire:click="moverAEquivalentes('{{ $noEquivalente['id'] }}')"
+                                                class="button-mover button-mover-equivalentes">
+                                                < </button>
+                                                    <span>{{ $noEquivalente['nombre'] }}
+                                                        ({{ $noEquivalente['codigo'] }})
+                                                    </span>
 
-                <x-slot name="footer">
-                    <x-secondary-button class="mr-2" wire:click="$set('open_edit', false)">
-                        Cancelar
-                    </x-secondary-button>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
+                </div>
 
-                    <x-button wire:loading.attr="disabled" class="disabled:opacity-25">
-                        Actualizar
-                    </x-button>
-                </x-slot>
+            </x-slot>
 
-            </x-dialog-modal>
-        </form>
+            <x-slot name="footer">
+                <x-secondary-button class="mr-2" wire:click="$set('open_edit', false)">
+                    Cancelar
+                </x-secondary-button>
+                <x-button wire:click="update" wire:loading.attr="disabled" class="disabled:opacity-25">
+                    Actualizar
+                </x-button>
+            </x-slot>
+
+        </x-dialog-modal>
+
 
         <style>
             /* Alineación uniforme entre el texto y el botón */

@@ -77,12 +77,12 @@ class ShowEvento extends Component
     //------------------------------------------------------------------------
     public function update()
     {
-         $this->validate([
+        $this->validate([
             'asignatura_id_edit' => 'required',
             'turno_id_edit' => 'required',
             'actividad_id_edit' => 'required',
             'fecha_edit' => 'required'
-         ]);
+        ]);
 
         $evento = Evento::find($this->eventoEdit_id);
         $evento->update([
@@ -106,7 +106,8 @@ class ShowEvento extends Component
         $this->dispatch('alert', message: 'evento actualizado');
     }
 
-    public function delete($evento_id){
+    public function delete($evento_id)
+    {
         $evento = Evento::find($evento_id);
         $evento->delete();
         //$this->dispatch('deleted', message: 'Evento eliminado con exito');

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class DictadoComun extends Model
 {
     use HasFactory;
-    
+    protected $table = 'dictado_comun';
+
 
     protected $fillable = ['asignatura_1', 'asignatura_2'];
 

@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Dictado;
+use App\Models\DictadoComun;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -35,9 +36,9 @@ class ShowEquivalencia extends Component
     public function mount()
     {
         //$this->asignaturas = Asignatura::all();
-        $this->selectedAsignatura = null;
-        $this->equivalentes = [];
-        $this->noEquivalentes = [];
+        //$this->selectedAsignatura = null;
+        //$this->equivalentes = [];
+        //$this->noEquivalentes = [];
 
         $this->carreras = Carrera::all();
         $this->dictados = Dictado::all();
@@ -75,11 +76,7 @@ class ShowEquivalencia extends Component
     public function order($sort)
     {
         if ($this->sort == $sort) { //si estoy en la misma columna me pregunto por la direccion de ordenamiento
-            if ($this->direction == 'asc') {
-                $this->direction == 'desc';
-            } else {
-                $this->direction == 'asc';
-            }
+            $this->direction = $this->direction == 'asc' ? 'desc' : 'asc';
         } else { //si es una columna nueva, ordeno de forma ascendente
             $this->sort = $sort;
             $this->direction = 'asc';
@@ -143,8 +140,10 @@ class ShowEquivalencia extends Component
 
     public function moverANoEquivalentes($id)
     {
+        //busca el id en la lista de equivalentes
         $asignatura = $this->buscarAsignatura($id, $this->equivalentes);
 
+        //toma el objeto encontrado y lo agrega al listado de no equivalentes
         if ($asignatura) {
             $this->equivalentes = array_filter(
                 $this->equivalentes,
@@ -170,28 +169,42 @@ class ShowEquivalencia extends Component
 
     public function update()
     {
-        //printf( $this->equivalentes);
-        //dd( $this->noEquivalentes);
-
         $this->validate([
-            'asignaturaEdit.nombre' => 'required|max:100',
-            'asignaturaEdit.codigo' => 'required|max:8',
-            'asignaturaEdit.ciclo' => 'required',
-            'asignaturaEdit.dictado_id' => 'required'
+            'asignaturaEdit_id' => 'required|exists:asignatura,id',
         ]);
 
         $asignatura = Asignatura::find($this->asignaturaEdit_id);
-        $asignatura->update([
-            'nombre' =>  $this->asignaturaEdit['nombre'],
-            'codigo' =>  $this->asignaturaEdit['codigo'],
-            'ciclo' =>  $this->asignaturaEdit['ciclo'],
-            'dictado_id' =>  $this->asignaturaEdit['dictado_id'],
-            'responsable' =>  $this->asignaturaEdit['responsable'],
-        ]);
 
-        $this->reset(['open_edit', 'asignaturaEdit', 'nombre', 'codigo', 'ciclo', 'responsable', 'dictado_id']);
+        // Obtener los IDs de las asignaturas equivalentes actuales
+        $directas = $asignatura->dictadosComunes->pluck('id')->toArray();
+        $inversas = $asignatura->dictadosComunesInversos->pluck('id')->toArray();
+        $equivalentesActuales = array_unique(array_merge($directas, $inversas));
 
-        //emito el evento alert para que me muestre un mensaje
+        // Obtener los IDs de las asignaturas equivalentes nuevas
+        $equivalentesNuevos = array_column($this->equivalentes, 'id');
+
+        // Asignaturas a agregar
+        $agregar = array_diff($equivalentesNuevos, $equivalentesActuales);
+        foreach ($agregar as $id) {
+            DictadoComun::create([
+                'asignatura_1' => $this->asignaturaEdit_id,
+                'asignatura_2' => $id,
+            ]);
+        }
+
+        // Asignaturas a eliminar
+        $eliminar = array_diff($equivalentesActuales, $equivalentesNuevos);
+        foreach ($eliminar as $id) {
+            DictadoComun::where(function ($query) use ($id) {
+                $query->where('asignatura_1', $this->asignaturaEdit_id)
+                    ->where('asignatura_2', $id);
+            })->orWhere(function ($query) use ($id) {
+                $query->where('asignatura_1', $id)
+                    ->where('asignatura_2', $this->asignaturaEdit_id);
+            })->delete();
+        }
+
+        $this->reset(['open_edit', 'selectedAsignatura', 'equivalentes', 'noEquivalentes']);
         $this->dispatch('alert', message: 'Asignatura actualizada');
     }
 }
