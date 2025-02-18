@@ -12,7 +12,7 @@ class ShowUsuario extends Component
     public $search;
     public $usuarioEdit_id;
     public $usuario_edit;
-    public $rol_id_edit;
+    public $rol_id_edit = null;
     public $roles = [];
     public $open_edit = false;
     use WithPagination;
@@ -27,7 +27,12 @@ class ShowUsuario extends Component
     public function loadEditData()
     {
         $this->roles = Role::all();
-        $this->rol_id_edit = $this->usuario_edit->roles[0]->id;
+        // Verifica si el usuario tiene roles asignados
+        if ($this->usuario_edit->roles->isEmpty()) {
+            $this->rol_id_edit = null; // Si no tiene roles, dejamos el rol vacío
+        } else {
+            $this->rol_id_edit = $this->usuario_edit->roles[0]->id; // Si tiene roles, asignamos el primer rol
+        }
     }
 
     protected $rules = [

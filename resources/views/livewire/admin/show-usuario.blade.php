@@ -79,7 +79,8 @@
                     @foreach ($roles as $rol)
                         <div class="flex items-center">
                             <input wire:model="rol_id_edit" type="radio" id="rol-{{ $rol->id }}"
-                                value="{{ $rol->id }}">
+                                value="{{ $rol->id }}" {{ $rol_id_edit === null ? 'checked' : '' }}>
+                            <!-- Si el rol_id_edit es null, marcar un radio vacío -->
                             <label for="rol-{{ $rol->id }}"
                                 class="ml-2 block text-sm font-medium text-gray-700">{{ $rol->name }}</label>
                         </div>
