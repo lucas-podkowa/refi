@@ -94,24 +94,19 @@
                                     </div>
                                 </td>
 
-
                                 <td class="px-6 py-3 whitespace-nowrap text-sm font-medium">
+                                    @if (auth()->user()->hasRole('Administrador') || auth()->user()->id == $item->user_id)
+                                        <a class="btn btn-blue-green" href="#"
+                                            wire:click="edit({{ $item->id }})">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
 
-                                    {{-- aqui esta el boton editar que dispara el metodo edit y este muestra el modal --}}
-                                    <a class="btn btn-blue-green" href="#" wire:click="edit({{ $item->id }})">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    {{-- <a class="btn btn-blue-green" href="#"
-                                        onclick="if(confirm('¿Estás seguro de que quieres eliminar este evento?')) { @this.delete({{ $item->id }}) }">
-                                        <i class="fa fa-trash"></i>
-                                    </a> --}}
-
-                                    <a class="btn btn-blue-green" href="#"
-                                        onclick="confirmDeletion({{ $item->id }})">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-
-                                </td>
+                                        <a class="btn btn-blue-green" href="#"
+                                            onclick="confirmDeletion({{ $item->id }})">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    @endif
+                                <td>
                             </tr>
                         @endforeach
 

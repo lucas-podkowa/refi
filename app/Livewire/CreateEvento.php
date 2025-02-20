@@ -8,6 +8,7 @@ use App\Models\Carrera;
 use App\Models\Evento;
 use App\Models\Turno;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class CreateEvento extends Component
@@ -145,6 +146,7 @@ class CreateEvento extends Component
             'observacion' => $this->observacion,
             'actividad_id' => $this->actividad_id,
             'asignatura_id' => $this->asignatura_id,
+            'user_id' => Auth::id(), // Asignar usuario autenticado
         ]);
 
         // Resetear los campos después de guardar

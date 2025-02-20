@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('turno_id')->constrained('turno');
             $table->foreignId('actividad_id')->constrained('actividad');
             $table->foreignId('asignatura_id')->constrained('asignatura');
+            $table->foreignId('user_id')->constrained('users'); // Relación con usuario
             $table->timestamps();
         });
     }

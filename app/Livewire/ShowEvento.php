@@ -8,6 +8,7 @@ use App\Models\Carrera;
 use App\Models\Evento;
 use App\Models\Turno;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Attributes\On;
 
@@ -37,11 +38,14 @@ class ShowEvento extends Component
     public $sort = 'fecha';
     public $direction = 'desc';
     public $open_edit = false;
+    public $user = false;
 
 
 
     public function mount($eventoEdit_id = null)
     {
+        $this->user = Auth::user();
+
         if ($eventoEdit_id) {
             $this->loadEditData();
         }
@@ -109,6 +113,12 @@ class ShowEvento extends Component
     public function delete($evento_id)
     {
         $evento = Evento::find($evento_id);
+
+        if ($evento->user_id !== Auth::id()) {
+            $this->dispatch('oops', message: 'No tienes permiso para eliminar este evento');
+            return;
+        }
+
         $evento->delete();
         //$this->dispatch('deleted', message: 'Evento eliminado con exito');
     }

@@ -1008,6 +1008,13 @@
                 <div class="flex-shrink-0">
                     <img src="{{ asset('/logos/logo_50.png') }}" style="width: 300px; height: auto;" alt="Logo">
                 </div>
+                <select id="filtroCiclo"
+                    class="flex-1 mx-4 my-2  border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                    <option value="">Todos los Ciclos</option>
+                    @foreach ($ciclos as $ciclo)
+                        <option value="{{ $ciclo }}">{{ $ciclo }}º Año</option>
+                    @endforeach
+                </select>
                 <div>
                     @if (Route::has('login'))
                         <!-- Enlaces a la derecha -->
@@ -1018,7 +1025,7 @@
                                     Panel de Control
                                 </a>
                             @else
-                                <a href="{{ route('login') }}" class="enlace">
+                                <a href="{{ route('login') }}" class="enlace my-2">
                                     Iniciar Sesión
                                 </a>
 
@@ -1034,7 +1041,7 @@
 
             </header>
 
-            <main class="mt-2">
+            <main>
                 <div class="flex">
                     <div id="calendar"> </div>
                 </div>
@@ -1064,6 +1071,17 @@
     <script>
         $(document).ready(function() {
             var etiquetas = @json($etiquetas);
+
+            function actualizarCalendario(filtroCiclo) {
+                var eventosFiltrados = etiquetas.filter(evento => {
+                    return filtroCiclo === "" || String(evento.ciclo) === String(filtroCiclo);
+                });
+                $('#calendar').fullCalendar('removeEvents');
+                $('#calendar').fullCalendar('addEventSource', eventosFiltrados);
+                $('#calendar').fullCalendar('rerenderEvents');
+
+            }
+
             $('#calendar').fullCalendar({
                 locale: 'es',
                 header: {
@@ -1072,33 +1090,26 @@
                     right: 'next'
                 },
                 events: etiquetas,
-
                 eventClick: function(event, jsEvent, view) {
                     // Limpiar el contenido anterior del modal
                     $('#eventsList').empty();
 
                     // Agregar detalles del evento al modal
-                    $('#eventsList').append('<li><strong>Asignatura:</strong> ' + event.asignatura +
+                    $('#eventsList').append('<li><strong>Asignaturas:</strong> ' + event.asignatura +
                         '</li>');
                     $('#eventsList').append('<li><strong>Actividad:</strong> ' + event.actividad +
                         '</li>');
-                    $('#eventsList').append('<li><strong>Carrera:</strong> ' + event.carrera +
-                        '</li>');
-                    $('#eventsList').append('<li><strong>Responsable:</strong> ' + (event.responsable ?
-                        event.responsable : '-') + '</li>');
+                    $('#eventsList').append('<li><strong>Dictados en Común:</strong> ' + (event
+                        .dictado_comun ? event.dictado_comun : '-') + '</li>');
                     $('#eventsList').append('<li><strong>Fecha:</strong> ' + event.start.format(
                         'YYYY-MM-DD') + '</li>');
                     $('#eventsList').append('<li><strong>Observación:</strong> ' + event.observacion +
                         '</li>');
 
-
-
-
                     // Mostrar el modal
                     $('#eventsModal').modal('show');
                 },
 
-                // Estilos personalizados para los eventos
                 eventRender: function(event, element) {
                     element.css('font-size', '20px');
                     element.css('border-radius', '5px');
@@ -1110,6 +1121,14 @@
                     element.find('.fc-title').html(event.title.replace(/\n/g, '<br/>'));
                 }
             });
+            // Detectar cambio en el filtro y actualizar eventos
+            $('#filtroCiclo').change(function() {
+                var filtroCiclo = $(this).val();
+                actualizarCalendario(filtroCiclo);
+            });
+
+
+
         });
     </script>
 

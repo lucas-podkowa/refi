@@ -1356,28 +1356,28 @@ class AsignaturaSeeder extends Seeder
 
 
 
-        DB::table('evento')->insert([
-            [
-                'fecha' => Carbon::create(2024, 9, 15),
-                'turno_id' => 1,
-                'observacion' => 'Evento de prueba 1',
-                'actividad_id' => 1, // Asumiendo que estos IDs existen en la tabla actividad
-                'asignatura_id' => 1, // Asumiendo que estos IDs existen en la tabla asignatura
-            ],
-            [
-                'fecha' => Carbon::create(2024, 9, 16),
-                'turno_id' => 1,
-                'observacion' => 'Evento de prueba 2',
-                'actividad_id' => 2, // Asumiendo que estos IDs existen en la tabla actividad
-                'asignatura_id' => 2, // Asumiendo que estos IDs existen en la tabla asignatura
-            ],
-            [
-                'fecha' => Carbon::create(2024, 9, 20),
-                'turno_id' => 2,
-                'observacion' => 'Evento de prueba 3',
-                'actividad_id' => 3, // Asumiendo que estos IDs existen en la tabla actividad
-                'asignatura_id' => 3, // Asumiendo que estos IDs existen en la tabla asignatura
-            ],
-        ]);
+        // DB::table('evento')->insert([
+        //     [
+        //         'fecha' => Carbon::create(2024, 9, 15),
+        //         'turno_id' => 1,
+        //         'observacion' => 'Evento de prueba 1',
+        //         'actividad_id' => 1, // Asumiendo que estos IDs existen en la tabla actividad
+        //         'asignatura_id' => 1, // Asumiendo que estos IDs existen en la tabla asignatura
+        //     ],
+        //     [
+        //         'fecha' => Carbon::create(2024, 9, 16),
+        //         'turno_id' => 1,
+        //         'observacion' => 'Evento de prueba 2',
+        //         'actividad_id' => 2, // Asumiendo que estos IDs existen en la tabla actividad
+        //         'asignatura_id' => 2, // Asumiendo que estos IDs existen en la tabla asignatura
+        //     ],
+        //     [
+        //         'fecha' => Carbon::create(2024, 9, 20),
+        //         'turno_id' => 2,
+        //         'observacion' => 'Evento de prueba 3',
+        //         'actividad_id' => 3, // Asumiendo que estos IDs existen en la tabla actividad
+        //         'asignatura_id' => 3, // Asumiendo que estos IDs existen en la tabla asignatura
+        //     ],
+        // ]);
     }
 }
