@@ -7,7 +7,7 @@
             {{-- ------------------- Buscador de la tabla ------------------------------------------------------- --}}
             <div class="px-6 py-4 flex">
                 <!-- input de jetstream utilizado para el buscador -->
-                <x-input class="flex-1 mr-4" placeholder="Buscar evento" type="text" wire:model="search" />
+                <x-input class="flex-1 mr-4" placeholder="Buscar evento" type="text" wire:model.live="search" />
 
                 {{-- este es un componente hijo, tiene un boton y el formulario para crear una carrera --}}
                 @livewire('create-evento')
@@ -21,8 +21,8 @@
 
                         <tr>
                             <th scope="col"
-                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500"
-                                wire:click="order('nombre')">
+                                class="cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500"
+                                wire:click="order('fecha')">
                                 Fecha
 
                                 {{-- $sort es una propiedad de la clase --}}
@@ -39,21 +39,21 @@
                             </th>
 
                             <th scope="col"
-                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500">Turno
+                                class="cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500">Turno
                             </th>
                             <th scope="col"
-                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500">Actividad
+                                class="cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500">Actividad
                             </th>
                             <th scope="col"
-                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500">Carrera
+                                class="cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500">Carrera
                             </th>
                             <th scope="col"
-                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500">Asignatura
+                                class="cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500">Asignatura
                             </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500">
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500">
                                 Observación
                             </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500">Acciones
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500">Acciones
                             </th>
                         </tr>
 
@@ -62,39 +62,40 @@
                     <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($eventos as $item)
                             <tr>
-                                <td class="px-6 py-3">
+                                <td class="px-4 py-2">
                                     <div class="text-sm text-gray-900">
-                                        {{ $item->fecha }}
+                                        {{-- {{ $item->fecha }} --}}
+                                        {{ \Carbon\Carbon::parse($item->fecha)->format('d/m/Y') }}
                                     </div>
                                 </td>
-                                <td class="px-6 py-3">
+                                <td class="px-4 py-2">
                                     <div class="text-sm text-gray-900">
                                         {{ $item->turno->nombre }}
                                     </div>
                                 </td>
 
-                                <td class="px-6 py-3">
+                                <td class="px-4 py-2">
                                     <div class="text-sm text-gray-900">
                                         {{ $item->actividad->nombre }}
                                     </div>
                                 </td>
-                                <td class="px-6 py-3">
+                                <td class="px-4 py-2">
                                     <div class="text-sm text-gray-900">
                                         {{ $item->asignatura->carrera->nombre }}
                                     </div>
                                 </td>
-                                <td class="px-6 py-3">
+                                <td class="px-4 py-2">
                                     <div class="text-sm text-gray-900">
                                         {{ $item->asignatura->nombre }}
                                     </div>
                                 </td>
-                                <td class="px-6 py-3">
+                                <td class="px-4 py-2">
                                     <div class="text-sm text-gray-900">
                                         {{ $item->observacion }}
                                     </div>
                                 </td>
 
-                                <td class="px-6 py-3 whitespace-nowrap text-sm font-medium">
+                                <td class="px-4 py-2 whitespace-nowrap text-sm font-medium">
                                     @if (auth()->user()->hasRole('Administrador') || auth()->user()->id == $item->user_id)
                                         <a class="btn btn-blue-green" href="#"
                                             wire:click="edit({{ $item->id }})">
@@ -112,6 +113,10 @@
 
                     </tbody>
                 </table>
+                {{-- Paginación --}}
+                <div class="px-6 py-3">
+                    {{ $eventos->links() }}
+                </div>
             @else
                 <div class="px-6 py-4">
                     No existen registros para mostrar

@@ -25,7 +25,7 @@ class CreateEvento extends Component
 
     //-------------------------------------
     public $open = false; //sirve para que el modal no se visualice al renderizar el componente
-    public $actividades = [];
+    public $actividades;
     public $carreras;
     public $turnos;
     public $ciclos;
@@ -46,14 +46,32 @@ class CreateEvento extends Component
         $this->turnos = Turno::all();
         $this->ciclos = collect();
         $this->asignaturas = collect();
+        $this->fecha = Carbon::now()->format('d-m-Y'); // Inicializa con la fecha actual
 
-        if (count($this->turnos) > 0) {
+
+        if ($this->turnos->isNotEmpty()) {
             $this->turno_id = $this->turnos->first()->id;
         }
-
-        if (count($this->carreras) > 0) {
+        if ($this->carreras->isNotEmpty()) {
             $this->carrera_id = $this->carreras->first()->id;
+            $this->updatedCarreraId($this->carrera_id); // Llamar para cargar ciclos y asignaturas
         }
+
+        if ($this->actividades->isNotEmpty()) {
+            $this->actividad_id = $this->actividades->first()->id;
+        }
+
+        if ($this->asignaturas->isNotEmpty()) {
+            $this->asignatura_id = $this->asignaturas->first()->id;
+        }
+
+        // if (count($this->turnos) > 0) {
+        //     $this->turno_id = $this->turnos->first()->id;
+        // }
+
+        // if (count($this->carreras) > 0) {
+        //     $this->carrera_id = $this->carreras->first()->id;
+        // }
     }
 
 

@@ -11,9 +11,11 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\WithPagination;
 
 class ShowEvento extends Component
 {
+    use WithPagination;
 
     //---- campos del formulario -------------
     public $asignatura_id_edit = null;
@@ -64,6 +66,10 @@ class ShowEvento extends Component
         'fecha_edit' => 'required'
     ];
 
+    public function updatedSearch()
+    {
+        $this->resetPage(); // Resetear paginación al buscar
+    }
 
     //------------------------------------------------------------------------
     //--- Metodo llamado al editar una fila --> wire:click="edit({{ $evento->id }})
@@ -185,14 +191,25 @@ class ShowEvento extends Component
         }
     }
 
+    // #[On('render')]
+    // public function render()
+    // {
+    //     $eventos = Evento::where('observacion', 'like', '%' . $this->search . '%')
+    //         // ->orWhere('codigo', 'like', '%' . $this->search . '%')
+    //         // ->orderBy($this->sort, $this->direction)
+    //         ->get();
+    //     //dd($eventos);
+    //     return view('livewire.show-evento', compact('eventos'));
+    // }
+
     #[On('render')]
     public function render()
     {
+
         $eventos = Evento::where('observacion', 'like', '%' . $this->search . '%')
-            // ->orWhere('codigo', 'like', '%' . $this->search . '%')
-            // ->orderBy($this->sort, $this->direction)
-            ->get();
-        //dd($eventos);
+            ->orderBy($this->sort, $this->direction)
+            ->paginate(10);
+
         return view('livewire.show-evento', compact('eventos'));
     }
 }
