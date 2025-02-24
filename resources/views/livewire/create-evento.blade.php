@@ -88,7 +88,7 @@
                 <div class=" mt-6 flex auto-rows-fr">
                     <div class="form-group flex-1">
                         <x-label value="Fecha" />
-                        <input type="date" id="fecha" wire:model.live="fecha"
+                        <input type="date" id="fecha" wire:model.live="fecha" min="{{ now()->toDateString() }}"
                             class="form-control mr-4 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
                         @error('fecha')
                             <span class="text-danger">{{ $message }}</span>

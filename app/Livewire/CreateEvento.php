@@ -32,7 +32,7 @@ class CreateEvento extends Component
     public $asignaturas;
 
     protected $rules = [
-        'fecha' => 'required|date',
+        'fecha' => 'required|date|after_or_equal:today',
         'observacion' => 'nullable|string',
         'actividad_id' => 'required|integer',
         'asignatura_id' => 'required|integer',

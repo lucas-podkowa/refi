@@ -232,6 +232,7 @@
                         <div class="form-group flex-1">
                             <x-label value="Fecha" />
                             <input type="date" id="fecha" wire:model="fecha_edit"
+                                min="{{ now()->toDateString() }}"
                                 class="form-control mr-4 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
                             {{-- @error('fecha_edit')
                                 <span class="text-danger">{{ $message }}</span>
