@@ -396,11 +396,6 @@
             </x-table>
 
 
-            {{-- <x-table>
-               
-
-            </x-table> --}}
-
         </x-slot>
 
 
