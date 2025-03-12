@@ -1015,6 +1015,12 @@
                         <option value="{{ $ciclo }}">{{ $ciclo }}º Año</option>
                     @endforeach
                 </select>
+                <select id="filtroCarrera" class="mr-4 my-2 border-gray-300 rounded-md shadow-sm">
+                    <option value="">Todas las Carreras</option>
+                    @foreach ($carreras as $carrera)
+                        <option value="{{ $carrera }}">{{ $carrera }}</option>
+                    @endforeach
+                </select>
                 <div>
                     @if (Route::has('login'))
                         <!-- Enlaces a la derecha -->
@@ -1072,14 +1078,27 @@
         $(document).ready(function() {
             var etiquetas = @json($etiquetas);
 
-            function actualizarCalendario(filtroCiclo) {
+            // function actualizarCalendario(filtroCiclo) {
+            //     var eventosFiltrados = etiquetas.filter(evento => {
+            //         return filtroCiclo === "" || String(evento.ciclo) === String(filtroCiclo);
+            //     });
+            //     $('#calendar').fullCalendar('removeEvents');
+            //     $('#calendar').fullCalendar('addEventSource', eventosFiltrados);
+            //     $('#calendar').fullCalendar('rerenderEvents');
+            // }
+
+            function actualizarCalendario(filtroCiclo, filtroCarrera) {
                 var eventosFiltrados = etiquetas.filter(evento => {
-                    return filtroCiclo === "" || String(evento.ciclo) === String(filtroCiclo);
+                    var coincideCiclo = filtroCiclo === "" || String(evento.ciclo) === String(filtroCiclo);
+                    var coincideCarrera = filtroCarrera === "" || evento.dictado_comun.includes(
+                        filtroCarrera);
+
+                    return coincideCiclo && coincideCarrera;
                 });
+
                 $('#calendar').fullCalendar('removeEvents');
                 $('#calendar').fullCalendar('addEventSource', eventosFiltrados);
                 $('#calendar').fullCalendar('rerenderEvents');
-
             }
 
             $('#calendar').fullCalendar({
@@ -1121,10 +1140,16 @@
                     element.find('.fc-title').html(event.title.replace(/\n/g, '<br/>'));
                 }
             });
-            // Detectar cambio en el filtro y actualizar eventos
-            $('#filtroCiclo').change(function() {
-                var filtroCiclo = $(this).val();
-                actualizarCalendario(filtroCiclo);
+            // // Detectar cambio en el filtro y actualizar eventos
+            // $('#filtroCiclo').change(function() {
+            //     var filtroCiclo = $(this).val();
+            //     actualizarCalendario(filtroCiclo);
+            // });
+            // Detectar cambios en los filtros
+            $('#filtroCiclo, #filtroCarrera').change(function() {
+                var filtroCiclo = $('#filtroCiclo').val();
+                var filtroCarrera = $('#filtroCarrera').val();
+                actualizarCalendario(filtroCiclo, filtroCarrera);
             });
 
 

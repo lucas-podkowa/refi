@@ -41,7 +41,7 @@ class CreateEvento extends Component
 
     public function mount()
     {
-        $this->actividades = Actividad::all();
+        $this->actividades = Actividad::orderBy('nombre', 'asc')->get();
         $this->carreras = Carrera::all();
         $this->turnos = Turno::all();
         $this->ciclos = collect();
