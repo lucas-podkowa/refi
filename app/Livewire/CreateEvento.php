@@ -45,7 +45,9 @@ class CreateEvento extends Component
         $this->carreras = Carrera::all();
         $this->turnos = Turno::all();
         $this->ciclos = collect();
-        $this->asignaturas = collect();
+        // $this->asignaturas = collect();
+        $this->asignaturas = auth()->user()->asignaturas; // Solo asignaturas del usuario autenticado
+
         $this->fecha = Carbon::now()->format('d-m-Y'); // Inicializa con la fecha actual
 
 
@@ -106,6 +108,9 @@ class CreateEvento extends Component
     {
         $asignaturas = Asignatura::where('carrera_id', $this->carrera_id)
             ->where('ciclo', $value)
+            ->whereHas('usuarios', function ($query) {
+                $query->where('user_id', auth()->id());
+            })
             ->get();
 
         $this->asignaturas = collect($asignaturas);
@@ -187,6 +192,8 @@ class CreateEvento extends Component
 
     public function render()
     {
-        return view('livewire.create-evento');
+        return view('livewire.create-evento', [
+            'asignaturas' => $this->asignaturas
+        ]);
     }
 }

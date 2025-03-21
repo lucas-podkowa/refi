@@ -65,4 +65,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function asignaturas()
+    {
+        //return $this->belongsToMany(Asignatura::class)->withPivot('asignatura_id', 'user_id');
+        return $this->belongsToMany(Asignatura::class, 'asignatura_user', 'user_id', 'asignatura_id');
+    }
 }

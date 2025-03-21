@@ -89,6 +89,41 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+                <div class="mt-4" style="display: flex;">
+                    <div style="margin-right: 20px; max-height: 50vh; overflow-y: auto;">
+                        <h5 class="text-center ">Asignaturas Relacionadas</h5>
+                        <hr>
+                        <ul>
+                            @foreach ($asignaturas_relacionadas as $relacionada)
+                                <li class="relacionada-item">
+                                    <span>{{ $relacionada['nombre'] }}
+                                        ({{ $relacionada['codigo'] }})
+                                    </span>
+                                    <button type="button" wire:click="moverANoRelacionado('{{ $relacionada['id'] }}')"
+                                        class="button-mover button-mover-no-equivalentes">></button>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+
+                    <div style="max-height: 50vh; overflow-y: auto;">
+                        <h5 class="text-center">Otras Asignaturas</h5>
+                        <hr>
+                        <ul>
+                            @foreach ($asignaturas_no_relacionadas as $noRelacionada)
+                                <li class="relacionada-item">
+                                    <button type="button" wire:click="moverARelacionado('{{ $noRelacionada['id'] }}')"
+                                        class="button-mover button-mover-equivalentes">
+                                        < </button>
+                                            <span>{{ $noRelacionada['nombre'] }}
+                                                ({{ $noRelacionada['codigo'] }})
+                                            </span>
+
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             </x-slot>
 
             <x-slot name="footer">
@@ -106,5 +141,43 @@
     </form>
 
     {{-- ------------------------  DIALOG MODAL visualizado al precionar el boton editar --------------------------- --}}
+    <style>
+        /* Alineación uniforme entre el texto y el botón */
+        .relacionada-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
 
+        /* Estilo base para los botones */
+        .button-mover {
+            border: none;
+            padding: 4px 5px;
+            font-size: 16px;
+            vertical-align: center;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Botón verde para mover a equivalentes */
+        .button-mover-equivalentes {
+            background-color: green;
+        }
+
+        .button-mover-equivalentes:hover {
+            background-color: darkred;
+        }
+
+        /* Botón rojo para mover a no equivalentes */
+        .button-mover-no-equivalentes {
+            background-color: red;
+        }
+
+        .button-mover-no-equivalentes:hover {
+            background-color: darkgreen;
+        }
+    </style>
 </div>

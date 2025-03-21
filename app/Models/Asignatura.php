@@ -11,7 +11,7 @@ class Asignatura extends Model
     protected $table = 'asignatura';
     protected $fillable = [
         'nombre',
-        'codigo', 
+        'codigo',
         'dictado_id',
         'carrera_id',
         'ciclo',
@@ -22,7 +22,7 @@ class Asignatura extends Model
     {
         return $this->hasMany(Evento::class);
     }
-    
+
     public function carrera()
     {
         return $this->belongsTo(Carrera::class);
@@ -41,5 +41,10 @@ class Asignatura extends Model
     public function dictadosComunesInversos()
     {
         return $this->belongsToMany(Asignatura::class, 'dictado_comun', 'asignatura_2', 'asignatura_1');
+    }
+
+    public function usuarios()
+    {
+        return $this->belongsToMany(User::class, 'asignatura_user', 'asignatura_id', 'user_id');
     }
 }

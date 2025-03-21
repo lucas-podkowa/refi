@@ -23,33 +23,22 @@ class ShowEquivalencia extends Component
     public $dictadosComunes;
     public $asignaturaEdit_id;
     public $asignaturaEdit = [];
-
-    //public $asignaturas;
     public $selectedAsignatura = null;
     public $equivalentes;
     public $noEquivalentes;
 
-
     use WithPagination;
-
 
     public function mount()
     {
-        //$this->asignaturas = Asignatura::all();
-        //$this->selectedAsignatura = null;
-        //$this->equivalentes = [];
-        //$this->noEquivalentes = [];
-
         $this->carreras = Carrera::all();
         $this->dictados = Dictado::all();
         $this->ciclos = Asignatura::distinct()->pluck('ciclo')->toArray();
     }
 
 
-
     public function render()
     {
-
         $asignaturas = Asignatura::where(function ($query) {
             $query->where('nombre', 'like', "%{$this->search}%")
                 ->orWhere('codigo', 'like', "%{$this->search}%");
@@ -83,21 +72,8 @@ class ShowEquivalencia extends Component
         }
     }
 
-    //------------------------------------------------------------------------
+
     //------ Metodo llamado al precionar el botor editar de cada fila --------
-    //------------------------------------------------------------------------
-
-    // public function selectAsignatura($id)
-    // {
-    //     $this->selectedAsignatura = Asignatura::find($id);
-    //     $this->equivalentes = $this->selectedAsignatura->dictadosComunes;
-
-    //     $equivalentesIds = $this->equivalentes->pluck('asignatura_id')->toArray();
-    //     $this->noEquivalentes = Asignatura::whereNotIn('asignatura_id', $equivalentesIds)
-    //                                       ->where('asignatura_id', '!=', $id)
-    //                                       ->get();
-    // }
-
 
     public function edit($id)
     {
@@ -120,8 +96,8 @@ class ShowEquivalencia extends Component
         $this->asignaturaEdit_id = $id;
         $this->open_edit = true;
     }
-    //------------------------------------------------------------------------
 
+    //------------------------------------------------------------------------
 
     public function moverAEquivalentes($id)
     {
@@ -164,7 +140,6 @@ class ShowEquivalencia extends Component
         }
         return null;
     }
-
 
 
     public function update()
