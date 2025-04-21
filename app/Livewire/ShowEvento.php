@@ -191,22 +191,16 @@ class ShowEvento extends Component
         }
     }
 
-    // #[On('render')]
-    // public function render()
-    // {
-    //     $eventos = Evento::where('observacion', 'like', '%' . $this->search . '%')
-    //         // ->orWhere('codigo', 'like', '%' . $this->search . '%')
-    //         // ->orderBy($this->sort, $this->direction)
-    //         ->get();
-    //     //dd($eventos);
-    //     return view('livewire.show-evento', compact('eventos'));
-    // }
-
     #[On('render')]
     public function render()
     {
-
-        $eventos = Evento::where('observacion', 'like', '%' . $this->search . '%')
+        $eventos = Evento::query()
+            ->when($this->search, function ($query) {
+                $query->where('observacion', 'like', '%' . $this->search . '%')
+                    ->orWhereHas('asignatura', function ($query) {
+                        $query->where('nombre', 'like', '%' . $this->search . '%');
+                    });
+            })
             ->orderBy($this->sort, $this->direction)
             ->paginate(10);
 
