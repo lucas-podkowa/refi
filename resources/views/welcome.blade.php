@@ -35,6 +35,16 @@
             border-color: #ffffff;
         }
 
+        .fc-day-grid .fc-row {
+            height: 128px !important;
+        }
+
+        .fc-scroller.fc-day-grid-container {
+            height: 768px !important;
+            overflow: hidden;
+        }
+
+
         .fc-head {
             background-color: #888;
             border-style: none;
@@ -1003,7 +1013,7 @@
     <div class="relative min-h-screen flex flex-col items-center selection:bg-[#FF2D20] selection:text-white">
         <div class="fondo relative w-full max-w-2xl px-6 lg:max-w-7xl">
 
-            <header class="nav_superior py-10">
+            <header class="nav_superior py-4">
                 <!-- Logo a la izquierda -->
                 <div class="flex-shrink-0">
                     <img src="{{ asset('/logos/logo_50.png') }}" style="width: 300px; height: auto;" alt="Logo">
@@ -1133,6 +1143,7 @@
                     element.css('font-size', '20px');
                     element.css('border-radius', '5px');
                     element.css('padding-left', '5px');
+                    element.css('line-height', '1.1');
                     element.css({
                         'white-space': 'normal',
                         'word-wrap': 'break-word'

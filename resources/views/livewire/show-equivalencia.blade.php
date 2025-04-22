@@ -4,7 +4,7 @@
 
             {{-- ------------------- Filtros de la tabla ------------------------------------------------------- --}}
             <div class="px-6 py-4 flex">
-                <x-input wire:model.live="search" placeholder="Buscar Asignatura" type="text" class="flex-1 mr-4" />
+                <x-input wire:model.live="search" placeholder="Nombre de Asignatura" type="text" class="flex-1 mr-4" />
 
                 <select wire:model.live="filtroCarrera"
                     class="flex-1 mr-4 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">

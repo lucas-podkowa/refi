@@ -1,10 +1,9 @@
 <div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
         <x-table>
+
             {{-- ------------------- Filtros de la tabla ------------------------------------------------------- --}}
             <div class="px-6 py-4 flex">
-                <!-- input de jetstream utilizado para el buscador -->
                 <x-input wire:model.live="search" placeholder="Nombre de Asignatura" type="text" class="flex-1 mr-4" />
 
                 <select wire:model.live="filtroCarrera"

@@ -11,6 +11,7 @@ use Spatie\Permission\Models\Role;
 class ShowUsuario extends Component
 {
     public $search;
+    public $search_no = '';
     public $usuarioEdit_id;
     public $usuario_edit;
     public $rol_id_edit = null;
@@ -34,7 +35,6 @@ class ShowUsuario extends Component
                 $this->rol_id_edit = $this->usuario_edit->roles->isNotEmpty() ? $this->usuario_edit->roles->first()->id : null;
 
                 // Obtener asignaturas relacionadas (corregido)
-
                 $relacionadas_ids = $this->usuario_edit->asignaturas->pluck('id')->toArray();
                 $this->asignaturas_relacionadas = Asignatura::whereIn('id', $relacionadas_ids)->get()->toArray();
                 $this->asignaturas_no_relacionadas = Asignatura::whereNotIn('id', $relacionadas_ids)->get()->toArray();
@@ -82,33 +82,6 @@ class ShowUsuario extends Component
         $this->reset(['rol_id_edit', 'usuario_edit', 'usuarioEdit_id']);
     }
 
-    // public function moverARelacionado($id)
-    // {
-
-    //     $asignatura = $this->buscarAsignatura($id, $this->asignaturas_no_relacionadas);
-
-    //     if ($asignatura) {
-    //         // Remover de asignaturas no relacionadas
-    //         $this->asignaturas_no_relacionadas = array_filter($this->asignaturas_no_relacionadas, fn($item) => $item['id'] != $id);
-
-    //         // Agregar solo el ID a `asignaturas_relacionadas` (para evitar problemas con `sync()`)
-    //         $this->asignaturas_relacionadas[] = $asignatura;
-    //     }
-    // }
-
-    // public function moverANoRelacionado($id)
-    // {
-    //     // Buscar la asignatura en asignaturas_relacionadas
-    //     $asignatura = $this->buscarAsignatura($id, $this->asignaturas_relacionadas);
-
-    //     if ($asignatura) {
-    //         // Remover de asignaturas relacionadas
-    //         $this->asignaturas_relacionadas = array_filter($this->asignaturas_relacionadas, fn($item) => $item['id'] != $id);
-
-    //         // Agregar a asignaturas no relacionadas
-    //         $this->asignaturas_no_relacionadas[] = $asignatura;
-    //     }
-    // }
 
     public function moverARelacionado($id)
     {
@@ -178,6 +151,19 @@ class ShowUsuario extends Component
         $usuarios = User::where('name', 'LIKE', '%' . $this->search . '%')
             ->orWhere('email', 'LIKE', '%' . $this->search . '%')
             ->paginate(15);
+
+        // // Obtener IDs relacionados
+        $relacionadas_ids = $this->usuario_edit?->asignaturas->pluck('id')->toArray() ?? [];
+
+        $this->asignaturas_no_relacionadas = Asignatura::whereNotIn('id', $relacionadas_ids)
+            ->when($this->search_no, function ($query) {
+                $query->where(function ($sub) {
+                    $sub->where('nombre', 'like', '%' . $this->search_no . '%')
+                        ->orWhere('codigo', 'like', '%' . $this->search_no . '%');
+                });
+            })
+            ->get()
+            ->toArray();
 
         return view('livewire.admin.show-usuario', compact('usuarios'));
     }

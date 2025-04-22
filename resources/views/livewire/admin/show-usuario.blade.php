@@ -75,21 +75,24 @@
                     <h2>Rol del Usuario</h2>
                 @endif
 
-                <div class="mt-4 grid">
+                <div class="mt-4 flex flex-wrap gap-6">
                     @foreach ($roles as $rol)
-                        <div class="flex items-center">
+                        <label for="rol-{{ $rol->id }}"
+                            class="flex items-center space-x-4 text-sm font-medium text-gray-700">
                             <input wire:model="rol_id_edit" type="radio" id="rol-{{ $rol->id }}"
                                 value="{{ $rol->id }}" {{ $rol_id_edit === null ? 'checked' : '' }}>
-                            <!-- Si el rol_id_edit es null, marcar un radio vacío -->
-                            <label for="rol-{{ $rol->id }}"
-                                class="ml-2 block text-sm font-medium text-gray-700">{{ $rol->name }}</label>
-                        </div>
+                            <span>{{ $rol->name }}</span>
+                        </label>
                     @endforeach
                     @error('rol_id_edit')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="mt-4" style="display: flex;">
+
+                <x-input class="w-full mt-4" placeholder="Nombre o Código de Asignatura" type="text"
+                    wire:model.live="search_no" />
+
+                <div class="mt-2" style="display: flex;">
                     <div style="margin-right: 20px; max-height: 50vh; overflow-y: auto;">
                         <h5 class="text-center ">Asignaturas Relacionadas</h5>
                         <hr>

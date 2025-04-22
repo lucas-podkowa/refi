@@ -7,7 +7,8 @@
             {{-- ------------------- Buscador de la tabla ------------------------------------------------------- --}}
             <div class="px-6 py-4 flex">
                 <!-- input de jetstream utilizado para el buscador -->
-                <x-input class="flex-1 mr-4" placeholder="Buscar evento" type="text" wire:model.live="search" />
+                <x-input class="flex-1 mr-4" placeholder="Buscar evento por asignatura y observación" type="text"
+                    wire:model.live="search" />
 
                 {{-- este es un componente hijo, tiene un boton y el formulario para crear una carrera --}}
                 @livewire('create-evento')
