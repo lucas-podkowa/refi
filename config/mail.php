@@ -87,13 +87,13 @@ return [
             ],
         ],
 
-        'roundrobin' => [
-            'transport' => 'roundrobin',
-            'mailers' => [
-                'ses',
-                'postmark',
-            ],
-        ],
+        // 'roundrobin' => [
+        //     'transport' => 'roundrobin',
+        //     'mailers' => [
+        //         'ses',
+        //         'postmark',
+        //     ],
+        // ],
 
     ],
 
