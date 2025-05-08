@@ -66,14 +66,6 @@ class CreateEvento extends Component
         if ($this->asignaturas->isNotEmpty()) {
             $this->asignatura_id = $this->asignaturas->first()->id;
         }
-
-        // if (count($this->turnos) > 0) {
-        //     $this->turno_id = $this->turnos->first()->id;
-        // }
-
-        // if (count($this->carreras) > 0) {
-        //     $this->carrera_id = $this->carreras->first()->id;
-        // }
     }
 
 
@@ -126,7 +118,6 @@ class CreateEvento extends Component
     {
         $this->validate();
 
-
         // Obtener las Dictados Comunes de la asignatura y luego añadir la propia asignatura al array de dictados comunes
         $asignatura = Asignatura::find($this->asignatura_id);
         $directas = $asignatura->dictadosComunes->pluck('id')->toArray();
@@ -158,6 +149,18 @@ class CreateEvento extends Component
 
         if ($eventoMismoCicloMismaCarrera) {
             $this->dispatch('oops', message: 'Existe otro evento del mismo año y carrera en este turno');
+            return;
+        }
+
+        // Validación: no permitir más de 2 eventos del mismo ciclo en una misma fecha
+        $cantidadEventosMismoCiclo = Evento::where('fecha', Carbon::parse($this->fecha))
+            ->whereHas('asignatura', function ($query) use ($ciclo) {
+                $query->where('ciclo', $ciclo);
+            })
+            ->count();
+
+        if ($cantidadEventosMismoCiclo >= 2) {
+            $this->dispatch('oops', message: 'Ya existen 2 eventos del mismo ciclo en esta fecha');
             return;
         }
 

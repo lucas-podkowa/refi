@@ -40,30 +40,30 @@
                     $('#lista').empty();
 
                     // Agregar detalles del evento al modal
-                    $('#lista').append('<li><strong>Asignatura:</strong> ' + event.title +
+                    $('#lista').append('<li><strong>Asignaturas:</strong> ' + event.asignatura +
                         '</li>');
-                    $('#lista').append('<li><strong>Responsable:</strong> ' + (event.responsable ?
-                        event.responsable : '-') + '</li>');
+                    $('#lista').append('<li><strong>Actividad:</strong> ' + event.actividad +
+                        '</li>');
+                    $('#lista').append('<li><strong>Dictados en Común:</strong> ' + (event
+                        .dictado_comun ? event.dictado_comun : '-') + '</li>');
                     $('#lista').append('<li><strong>Fecha:</strong> ' + event.start.format(
-                        'YYYY-MM-DD') + '</li>');
+                        'DD/MM/YYYY') + '</li>');
                     $('#lista').append('<li><strong>Observación:</strong> ' + event.observacion +
                         '</li>');
-
-
                     // Mostrar el modal
                     $('#eventsModal').modal('show');
                 },
 
                 // Estilos personalizados para los eventos
                 eventRender: function(event, element) {
-                    element.css('font-size', '20px');
-                    element.css('border-radius', '10px');
+                    element.css('font-size', '16px');
+                    element.css('border-radius', '5px');
                 }
 
             });
 
-            $('.fc-event').css('font-size', '20px');
-            $('.fc-event').css('border-radius', '10px');
+            $('.fc-event').css('font-size', '18px');
+            $('.fc-event').css('border-radius', '5px');
         });
     </script>
 </x-app-layout>
