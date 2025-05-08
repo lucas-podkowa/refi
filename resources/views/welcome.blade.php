@@ -134,7 +134,7 @@
 
             <header class="nav_superior py-4">
                 <!-- Logo a la izquierda -->
-                <div class="flex-shrink-0">
+                <div>
                     <img src="{{ asset('/logos/logo_50.png') }}" style="width: 300px; height: auto;" alt="Logo">
                 </div>
                 <select id="filtroCiclo"
